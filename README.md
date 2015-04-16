@@ -28,7 +28,7 @@ In your api file (somewhere on the top)
 
 With the default configuration you will get nice log message
 
-    [2015-04-14 13:54:08 +0200] INFO -- 200 -- total=2.06 db=0.36 -- GET /your_app/endpoint params={some_param: 12}
+    [2015-04-16 12:52:12 +0200] INFO -- 200 -- total=2.06 db=0.36 -- PATCH /your_app/endpoint params={"some_param"=>{"value_1"=>"123", "value_2"=>"456"}}
 
 If you prefer some other format I strongly encourage you to do pull request with new formatter class ;)
 
