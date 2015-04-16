@@ -16,24 +16,13 @@ Or install it yourself as:
 
 ## Basic Usage
 
-### With Rack
-
-In your `config.ru`:
-
-    ...
-    use GrapeLogging::Middleware::RequestLogger
-    ...
-    run Your::Application
-
-And then set logger formatter in your main api file
+In your api file (somewhere on the top)
 
     logger.formatter = GrapeLogging::Formatters::Default.new
-
-### With Rails
-
+    use GrapeLogging::Middleware::RequestLogger, { logger: logger }
 
 
-## Other features
+## Features
 
 ### Log Format
 
@@ -45,7 +34,7 @@ If you prefer some other format I strongly encourage you to do pull request with
 
 ### Logging to file and STDOUT
 
-You can to file and STDOUT at once, you just need to assign new logger
+You can to file and STDOUT at the same time, you just need to assign new logger
 
     logger Logger.new GrapeLogging::MultiIO.new(STDOUT, File.open('path/to/your/logfile.log'), 'a'))
 
