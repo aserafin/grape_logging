@@ -1,16 +1,10 @@
-# GrapeLogging
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/grape_logging`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+# grape_logging
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-```ruby
-gem 'grape_logging'
-```
+    gem 'grape_logging'
 
 And then execute:
 
@@ -20,9 +14,51 @@ Or install it yourself as:
 
     $ gem install grape_logging
 
-## Usage
+## Basic Usage
 
-TODO: Write usage instructions here
+### With Rack
+
+In your `config.ru`:
+
+    ...
+    use GrapeLogging::Middleware::RequestLogger
+    ...
+    run Your::Application
+
+And then set logger formatter in your main api file
+
+    logger.formatter = GrapeLogging::Formatters::Default.new
+
+### With Rails
+
+
+
+### Other features
+
+## Log Format
+
+With the default configuration you will get nice log message
+
+    [2015-04-14 13:54:08 +0200] INFO -- 200 -- total=2.06 db=0.36 -- GET /your_app/endpoint params={some_param: 12}
+
+If you prefer some other format I strongly encourage you to do pull request with new formatter class ;)
+
+## Logging to file and STDOUT
+
+You can to file and STDOUT at once, you just need to assign new logger
+
+    logger Logger.new GrapeLogging::MultiIO.new(STDOUT, File.open('path/to/your/logfile.log'), 'a'))
+
+## Logging exceptions
+
+If you want to log exceptions you can do it like this
+
+    class MyAPI < Grape::API
+      rescue_from :all do |e|
+        MyAPI.logger.error e
+        #do here whatever you originally planned to do :)
+      end
+    end
 
 ## Development
 
@@ -32,7 +68,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/grape_logging/fork )
+1. Fork it ( https://github.com/aserafin/grape_logging/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
