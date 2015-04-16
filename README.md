@@ -33,9 +33,9 @@ And then set logger formatter in your main api file
 
 
 
-### Other features
+## Other features
 
-## Log Format
+### Log Format
 
 With the default configuration you will get nice log message
 
@@ -43,13 +43,13 @@ With the default configuration you will get nice log message
 
 If you prefer some other format I strongly encourage you to do pull request with new formatter class ;)
 
-## Logging to file and STDOUT
+### Logging to file and STDOUT
 
 You can to file and STDOUT at once, you just need to assign new logger
 
     logger Logger.new GrapeLogging::MultiIO.new(STDOUT, File.open('path/to/your/logfile.log'), 'a'))
 
-## Logging exceptions
+### Logging exceptions
 
 If you want to log exceptions you can do it like this
 
