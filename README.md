@@ -1,5 +1,7 @@
 # grape_logging
 
+[![Code Climate](https://codeclimate.com/github/aserafin/grape_logging/badges/gpa.svg)](https://codeclimate.com/github/aserafin/grape_logging)
+
 ## Installation
 
 Add this line to your application's Gemfile:
