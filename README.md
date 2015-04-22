@@ -38,7 +38,7 @@ If you prefer some other format I strongly encourage you to do pull request with
 
 You can to file and STDOUT at the same time, you just need to assign new logger
 
-    logger Logger.new GrapeLogging::MultiIO.new(STDOUT, File.open('path/to/your/logfile.log', 'a')))
+    logger Logger.new GrapeLogging::MultiIO.new(STDOUT, File.open('path/to/your/logfile.log', 'a'))
 
 ### Logging exceptions
 
