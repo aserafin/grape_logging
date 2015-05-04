@@ -1,3 +1,4 @@
+require 'benchmark'
 require 'grape/middleware/base'
 
 module GrapeLogging
