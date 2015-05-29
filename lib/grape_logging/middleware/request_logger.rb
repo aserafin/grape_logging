@@ -29,7 +29,7 @@ module GrapeLogging
       def parameters
         {
             path: request.path,
-            params: request.params.to_hash,
+            params: obfuscate_parameters(request.params),
             method: request.request_method,
             total: total_runtime,
             db: @db_duration.round(2),
@@ -56,6 +56,18 @@ module GrapeLogging
 
       def stop_time
         @stop_time ||= Time.now
+      end
+
+      def obfuscate_parameters(request_parameters)
+        filtered_parameters = request_parameters.clone.to_hash
+        sensitive_parameters.each do |param|
+          filtered_parameters[param.to_s] = '***'
+        end
+        filtered_parameters
+      end
+
+      def sensitive_parameters
+        defined?(Rails.application) ? Rails.application.config.filter_parameters : []
       end
     end
   end
