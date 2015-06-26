@@ -7,7 +7,7 @@ module GrapeLogging
         start_time
 
         @db_duration = 0
-        ActiveSupport::Notifications.subscribe('sql.active_record') do |*args|
+        @subscription = ActiveSupport::Notifications.subscribe('sql.active_record') do |*args|
           event = ActiveSupport::Notifications::Event.new(*args)
           @db_duration += event.duration
         end if defined?(ActiveRecord)
@@ -15,12 +15,13 @@ module GrapeLogging
 
       def after
         stop_time
-        logger.info parameters(request, response)
+        logger.info parameters
+        ActiveSupport::Notifications.unsubscribe(@subscription) if @subscription
         nil
       end
 
       protected
-      def parameters(request, response)
+      def parameters
         {
             path: request.path,
             params: request.params.to_hash,
