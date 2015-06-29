@@ -16,8 +16,13 @@ module GrapeLogging
       def after
         stop_time
         logger.info parameters
-        ActiveSupport::Notifications.unsubscribe(@subscription) if @subscription
         nil
+      end
+
+      def call!(env)
+        super
+      ensure
+        ActiveSupport::Notifications.unsubscribe(@subscription) if @subscription
       end
 
       protected
