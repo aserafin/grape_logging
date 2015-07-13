@@ -12,7 +12,7 @@ module GrapeLogging
 
       def before
         start_time
-        included_loggers.each do |included_logger|
+        @included_loggers.each do |included_logger|
           included_logger.before
         end
       end
@@ -21,7 +21,7 @@ module GrapeLogging
         stop_time
 
         parameters = parameters(request, response)
-        included_loggers.each do |included_logger|
+        @included_loggers.each do |included_logger|
           parameters.merge! included_logger.parameters(request, response) do |key, oldval, newval|
             oldval.respond_to?(:merge) ? oldval.merge(newval) : newval
           end
@@ -39,7 +39,7 @@ module GrapeLogging
           },
           method: request.request_method,
           path: request.path,
-          params: obfuscate_parameters(request.params)
+          params: request.params
         }
       end
 
