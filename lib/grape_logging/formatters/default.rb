@@ -11,7 +11,7 @@ module GrapeLogging
         elsif data.is_a?(Exception)
           format_exception(data)
         elsif data.is_a?(Hash)
-          "#{data.delete(:status)} -- total=#{data.delete(:total)} db=#{data.delete(:db)} -- #{data.delete(:method)} #{data.delete(:path)} #{format_hash(data)}"
+          "#{data.delete(:status)} -- #{format_hash(data.delete(:time))} -- #{data.delete(:method)} #{data.delete(:path)} #{format_hash(data)}"
         else
           data.inspect
         end
