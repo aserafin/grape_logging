@@ -33,7 +33,7 @@ module GrapeLogging
             method: request.request_method,
             total: total_runtime,
             db: @db_duration.round(2),
-            status: response.status
+            status: @app_response.status
         }
       end
 
