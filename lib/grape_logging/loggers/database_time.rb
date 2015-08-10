@@ -1,6 +1,6 @@
 module GrapeLogging
-  module Logger
-    class DatabaseTime < GrapeLogging::Logger::Base
+  module Loggers
+    class DatabaseTime < GrapeLogging::Loggers::Base
       def before
         @duration = 0
         ActiveSupport::Notifications.subscribe('sql.active_record') do |*args|

@@ -1,9 +1,9 @@
 module GrapeLogging
-  module Logger
-    class Response < GrapeLogging::Logger::Base
+  module Loggers
+    class Response < GrapeLogging::Loggers::Base
       def parameters(request, response)
         {
-          response: response.body
+          response: response.body.to_s
         }
       end
     end

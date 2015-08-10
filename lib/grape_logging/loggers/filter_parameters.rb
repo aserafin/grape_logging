@@ -1,6 +1,6 @@
 module GrapeLogging
-  module Logger
-    class FilterParameters < GrapeLogging::Logger::Base
+  module Loggers
+    class FilterParameters < GrapeLogging::Loggers::Base
       def initialize(filter_parameters = nil, replacement = '[FILTERED]')
         @filter_parameters = filter_parameters || (defined?(Rails.application) ? Rails.application.config.filter_parameters : [])
         @replacement = replacement
