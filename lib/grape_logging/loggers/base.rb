@@ -1,5 +1,5 @@
 module GrapeLogging
-  module Logger
+  module Loggers
     class Base
       def before
       end
