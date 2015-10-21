@@ -2,11 +2,13 @@ module GrapeLogging
   module Formatters
     class Json
       def call(severity, datetime, _, data)
-        JSON.parse({
-          date: datetime,
-          severity: severity,
-          data: format(data)
-        })
+        JSON.parse(
+          {
+            date: datetime,
+            severity: severity,
+            data: format(data)
+          }
+        )
       end
 
       private
