@@ -10,7 +10,7 @@ Add this line to your application's Gemfile:
 
 And then execute:
 
-    $ bundle
+    $ bundle install
 
 Or install it yourself as:
 
@@ -18,11 +18,11 @@ Or install it yourself as:
 
 ## Basic Usage
 
-In your api file (somewhere on the top)
+Include the middleware in your api
 
-    logger.formatter = GrapeLogging::Formatters::Default.new
-    use GrapeLogging::Middleware::RequestLogger, { logger: logger }
-
+    class MyAPI < Grape::API
+      use GrapeLogging::Middleware::RequestLogger, logger: logger
+    end
 
 ## Features
 
@@ -33,6 +33,26 @@ With the default configuration you will get nice log message
     [2015-04-16 12:52:12 +0200] INFO -- 200 -- total=2.06 db=0.36 -- PATCH /your_app/endpoint params={"some_param"=>{"value_1"=>"123", "value_2"=>"456"}}
 
 If you prefer some other format I strongly encourage you to do pull request with new formatter class ;)
+
+You can change the formatter like so
+
+    class MyAPI < Grape::API
+      use GrapeLogging::Middleware::RequestLogger, logger: logger, format: MyFormatter.new
+    end
+
+### Customising What Is Logged
+
+You can include logging of other parts of the request / response cycle by including subclasses of `GrapeLogging::Loggers::Base`
+
+    class MyAPI < Grape::API
+      use GrapeLogging::Middleware::RequestLogger,
+        logger: logger,
+        include: [ GrapeLogging::Loggers::Response.new,
+                   GrapeLogging::Loggers::DatabaseTime.new,
+                   GrapeLogging::Loggers::FilterParameters.new ]
+    end
+
+The `FilterParameters` logger will filter out sensitive parameters from your logs. If mounted inside rails, will use the `Rails.application.config.filter_parameters` by default. Otherwise, you must specify a list of keys to filter out.
 
 ### Logging to file and STDOUT
 
