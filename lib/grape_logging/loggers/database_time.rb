@@ -6,7 +6,7 @@ module GrapeLogging
         @subscription = ActiveSupport::Notifications.subscribe('sql.active_record') do |*args|
           event = ActiveSupport::Notifications::Event.new(*args)
           @duration += event.duration
-        end
+        end if defined?(ActiveRecord)
       end
 
       def after
