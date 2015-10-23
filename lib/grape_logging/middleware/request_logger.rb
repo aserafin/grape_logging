@@ -22,16 +22,16 @@ module GrapeLogging
       def after
         stop_time
 
-        parameters = get_parameters
+        params = parameter
         @included_loggers.each do |included_logger|
-          parameters.merge! included_logger.parameters(request, response) do |key, oldval, newval|
+          params.merge! included_logger.parameters(request, response) do |key, oldval, newval|
             oldval.respond_to?(:merge) ? oldval.merge(newval) : newval
           end
         end
         if @instrumentation_key
-          ActiveSupport::Notifications.instrument @instrumentation_key, parameters
+          ActiveSupport::Notifications.instrument @instrumentation_key, params
         else
-          @logger.info parameters
+          @logger.info params
         end
         nil
       end
@@ -41,7 +41,7 @@ module GrapeLogging
       end
 
       protected
-      def get_parameters
+      def parameter
         {
           status: response.status,
           time: {
