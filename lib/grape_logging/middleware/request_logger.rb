@@ -33,6 +33,7 @@ module GrapeLogging
         else
           @logger.info params
         end
+        @included_loggers.each { |included_logger| included_logger.after if included_logger.respond_to?(:after) }
         nil
       end
 
