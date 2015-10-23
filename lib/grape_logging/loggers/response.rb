@@ -3,7 +3,7 @@ module GrapeLogging
     class Response < GrapeLogging::Loggers::Base
       def parameters(request, response)
         {
-          response: JSON.parse(response.body.first)
+          response: response.body.map{ |body| JSON.parse(body) }
         }
       end
     end
