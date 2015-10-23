@@ -22,7 +22,7 @@ module GrapeLogging
       def after
         stop_time
 
-        parameters = parameters(request, response)
+        parameters = get_parameters
         @included_loggers.each do |included_logger|
           parameters.merge! included_logger.parameters(request, response) do |key, oldval, newval|
             oldval.respond_to?(:merge) ? oldval.merge(newval) : newval
@@ -38,12 +38,10 @@ module GrapeLogging
 
       def call!(env)
         super
-      ensure
-        ActiveSupport::Notifications.unsubscribe(@subscription) if @subscription
       end
 
       protected
-      def parameters(request, response)
+      def get_parameters
         {
           status: response.status,
           time: {
