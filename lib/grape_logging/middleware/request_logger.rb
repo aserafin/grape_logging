@@ -5,16 +5,18 @@ module GrapeLogging
     class RequestLogger < Grape::Middleware::Base
       def initialize(app, options = {})
         super
-        @logger = @options[:logger] || Logger.new(STDOUT)
-        @logger.formatter = @options[:formatter] || GrapeLogging::Formatters::Default.new
+        if options[:instrumentation_key]
+          @instrumentation_key = options[:instrumentation_key]
+        else
+          @logger = @options[:logger] || Logger.new(STDOUT)
+          @logger.formatter = @options[:formatter] || GrapeLogging::Formatters::Default.new
+        end
         @included_loggers = @options[:include] || []
       end
 
       def before
         start_time
-        @included_loggers.each do |included_logger|
-          included_logger.before
-        end
+        @included_loggers.each { |included_logger| included_logger.before }
       end
 
       def after
@@ -26,7 +28,11 @@ module GrapeLogging
             oldval.respond_to?(:merge) ? oldval.merge(newval) : newval
           end
         end
-        @logger.info parameters
+        if @instrumentation_key
+          ActiveSupport::Notifications.instrument @instrumentation_key, parameters
+        else
+          @logger.info parameters
+        end
         nil
       end
 
