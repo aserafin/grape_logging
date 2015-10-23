@@ -3,7 +3,7 @@ module GrapeLogging
     class Response < GrapeLogging::Loggers::Base
       def parameters(request, response)
         {
-          response: response.body.to_s
+          response: response.body
         }
       end
     end
