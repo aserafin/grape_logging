@@ -15,7 +15,7 @@ module GrapeLogging
         begin
           response.body.map{ |body| JSON.parse(body) }
         rescue => e
-          ""
+          {}
         end
       end
     end
