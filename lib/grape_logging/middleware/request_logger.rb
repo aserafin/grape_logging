@@ -1,62 +1,81 @@
-require 'grape/middleware/base'
+require 'thread'
+require 'logger'
 
 module GrapeLogging
   module Middleware
-    class RequestLogger < Grape::Middleware::Base
-      def before
-        start_time
+    class RequestLogger
 
-        @db_duration = 0
-        @subscription = ActiveSupport::Notifications.subscribe('sql.active_record') do |*args|
-          event = ActiveSupport::Notifications::Event.new(*args)
-          @db_duration += event.duration
-        end if defined?(ActiveRecord)
+      def initialize(app, options = {})
+        @app = app
+        @logger = options[:logger] || Logger.new(STDOUT)
+
+        subscribe_to_active_record if defined? ActiveRecord
       end
 
-      def after
-        stop_time
-        logger.info parameters
-        nil
-      end
+      def call(env)
+        request = ::Rack::Request.new(env)
 
-      def call!(env)
-        super
-      ensure
-        ActiveSupport::Notifications.unsubscribe(@subscription) if @subscription
+        init_db_runtime
+
+        start_time = Time.now
+
+        response = @app.call(env)
+
+        stop_time = Time.now
+
+        total_runtime = calculate_runtime(start_time, stop_time)
+
+        log(request, response, total_runtime)
+
+        clear_db_runtime
+
+        response
       end
 
       protected
-      def parameters
-        {
-            path: request.path,
-            params: request.params.to_hash,
-            method: request.request_method,
-            total: total_runtime,
-            db: @db_duration.round(2),
-            status: response.status
-        }
+
+      def subscribe_to_active_record
+        ActiveSupport::Notifications.subscribe('sql.active_record') do |*args|
+          event = ActiveSupport::Notifications::Event.new(*args)
+          increase_db_runtime(event.duration)
+        end if defined? ActiveRecord
       end
 
-      private
-      def logger
-        @logger ||= @options[:logger] || Logger.new(STDOUT)
+      def log(request, response, total_runtime)
+        @logger.info(
+          path: request.path,
+          params: request.params.to_hash,
+          method: request.request_method,
+          total: format_runtime(total_runtime),
+          db: format_runtime(db_runtime),
+          status: response[0]
+        )
       end
 
-      def request
-        @request ||= ::Rack::Request.new(env)
+      def calculate_runtime(start_time, stop_time)
+        (stop_time - start_time) * 1000
       end
 
-      def total_runtime
-        ((stop_time - start_time) * 1000).round(2)
+      def format_runtime(time)
+        time.round(2)
       end
 
-      def start_time
-        @start_time ||= Time.now
+      def init_db_runtime
+        Thread.current[:db_runtime] = 0
       end
 
-      def stop_time
-        @stop_time ||= Time.now
+      def clear_db_runtime
+        Thread.current[:db_runtime] = nil
+      end
+
+      def increase_db_runtime(time)
+        Thread.current[:db_runtime] += time
+      end
+
+      def db_runtime
+        Thread.current[:db_runtime]
       end
     end
+
   end
 end
