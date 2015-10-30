@@ -38,7 +38,7 @@ module GrapeLogging
         ActiveSupport::Notifications.subscribe('sql.active_record') do |*args|
           event = ActiveSupport::Notifications::Event.new(*args)
           increase_db_runtime(event.duration)
-        end if defined? ActiveRecord
+        end
       end
 
       def log(request, response, total_runtime)
