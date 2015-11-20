@@ -48,7 +48,7 @@ module GrapeLogging
           method: request.request_method,
           total: format_runtime(total_runtime),
           db: format_runtime(db_runtime),
-          status: response[0]
+          status: response.is_a?(Rack::Response) ? response.status : response[0]
         )
       end
 
