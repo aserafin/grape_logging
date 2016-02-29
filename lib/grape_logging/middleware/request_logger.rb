@@ -49,6 +49,15 @@ module GrapeLogging
       end
 
       protected
+
+      def response
+        begin
+          super
+        rescue
+          nil
+        end
+      end
+
       def parameters
         {
           status: response.try(:status),
