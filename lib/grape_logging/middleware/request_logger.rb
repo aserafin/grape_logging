@@ -60,7 +60,7 @@ module GrapeLogging
 
       def parameters
         {
-          status: response.try(:status),
+          status: response.nil? ? 'fail' : response.status,
           time: {
             total: total_runtime,
             db: db_runtime,
