@@ -18,11 +18,11 @@ Or install it yourself as:
 
 ## Basic Usage
 
-Include the middleware in your api
-
-    class MyAPI < Grape::API
-      use GrapeLogging::Middleware::RequestLogger, logger: logger
-    end
+In your api file (somewhere on the top)
+    
+    require 'grape_logging'
+    logger.formatter = GrapeLogging::Formatters::Default.new
+    use GrapeLogging::Middleware::RequestLogger, { logger: logger }
 
 ## Features
 
