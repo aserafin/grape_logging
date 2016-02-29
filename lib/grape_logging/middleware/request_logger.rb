@@ -3,6 +3,12 @@ require 'grape/middleware/base'
 module GrapeLogging
   module Middleware
     class RequestLogger < Grape::Middleware::Base
+
+      ActiveSupport::Notifications.subscribe('sql.active_record') do |*args|
+        event = ActiveSupport::Notifications::Event.new(*args)
+        GrapeLogging::Timings.append_db_runtime(event)
+      end if defined?(ActiveRecord)
+
       def initialize(app, options = {})
         super
         if options[:instrumentation_key]
@@ -15,6 +21,7 @@ module GrapeLogging
       end
 
       def before
+        reset_db_runtime
         start_time
         @included_loggers.each { |included_logger| included_logger.before }
       end
@@ -46,7 +53,9 @@ module GrapeLogging
         {
           status: response.status,
           time: {
-            total: total_runtime
+            total: total_runtime,
+            db: db_runtime,
+            view: view_runtime
           },
           method: request.request_method,
           path: request.path,
@@ -61,6 +70,18 @@ module GrapeLogging
 
       def total_runtime
         ((stop_time - start_time) * 1000).round(2)
+      end
+
+      def view_runtime
+        total_runtime - db_runtime
+      end
+
+      def db_runtime
+        GrapeLogging::Timings.db_runtime.round(2)
+      end
+
+      def reset_db_runtime
+        GrapeLogging::Timings.reset_db_runtime
       end
 
       def start_time

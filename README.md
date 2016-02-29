@@ -48,7 +48,6 @@ You can include logging of other parts of the request / response cycle by includ
       use GrapeLogging::Middleware::RequestLogger,
         logger: logger,
         include: [ GrapeLogging::Loggers::Response.new,
-                   GrapeLogging::Loggers::DatabaseTime.new,
                    GrapeLogging::Loggers::FilterParameters.new ]
     end
 
@@ -71,7 +70,6 @@ First, config ```grape_logging```, like that:
       use GrapeLogging::Middleware::RequestLogger,
         instrumentation_key: 'grape_key',
         include: [ GrapeLogging::Loggers::Response.new,
-                   GrapeLogging::Loggers::DatabaseTime.new,
                    GrapeLogging::Loggers::FilterParameters.new ]
     end
     
