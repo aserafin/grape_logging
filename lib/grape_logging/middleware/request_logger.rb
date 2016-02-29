@@ -23,7 +23,7 @@ module GrapeLogging
       def before
         reset_db_runtime
         start_time
-        @included_loggers.each { |included_logger| included_logger.before }
+        @included_loggers.each(&:before)
       end
 
       def after
