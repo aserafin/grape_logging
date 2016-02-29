@@ -51,7 +51,7 @@ module GrapeLogging
       protected
       def parameters
         {
-          status: response.status,
+          status: response.try(:status),
           time: {
             total: total_runtime,
             db: db_runtime,

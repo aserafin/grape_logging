@@ -2,9 +2,13 @@ module GrapeLogging
   module Loggers
     class Response < GrapeLogging::Loggers::Base
       def parameters(request, response)
-        {
-          response: serialized_response_body(response)
-        }
+        if response
+          {
+            response: serialized_response_body(response)
+          }
+        else
+          {}
+        end
       end
 
       private
