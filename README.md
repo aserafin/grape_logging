@@ -55,7 +55,7 @@ The `FilterParameters` logger will filter out sensitive parameters from your log
 
 ### Logging to file and STDOUT
 
-You can to file and STDOUT at the same time, you just need to assign new logger
+You can log to file and STDOUT at the same time, you just need to assign new logger
     
     log_file = File.open('path/to/your/logfile.log', 'a')
     log_file.sync = true
