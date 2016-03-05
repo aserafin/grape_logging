@@ -3,51 +3,94 @@ require 'grape/middleware/base'
 module GrapeLogging
   module Middleware
     class RequestLogger < Grape::Middleware::Base
-      def before
-        start_time
 
-        @db_duration = 0
-        @subscription = ActiveSupport::Notifications.subscribe('sql.active_record') do |*args|
-          event = ActiveSupport::Notifications::Event.new(*args)
-          @db_duration += event.duration
-        end if defined?(ActiveRecord)
+      ActiveSupport::Notifications.subscribe('sql.active_record') do |*args|
+        event = ActiveSupport::Notifications::Event.new(*args)
+        GrapeLogging::Timings.append_db_runtime(event)
+      end if defined?(ActiveRecord)
+
+      def initialize(app, options = {})
+        super
+        if options[:instrumentation_key]
+          @instrumentation_key = options[:instrumentation_key]
+        else
+          @logger = @options[:logger] || Logger.new(STDOUT)
+          @logger.formatter = @options[:formatter] || GrapeLogging::Formatters::Default.new
+        end
+        @included_loggers = @options[:include] || []
+      end
+
+      def before
+        reset_db_runtime
+        start_time
+        @included_loggers.each(&:before)
       end
 
       def after
         stop_time
-        logger.info parameters
+
+        params = parameters
+        @included_loggers.each do |included_logger|
+          params.merge! included_logger.parameters(request, response) do |key, oldval, newval|
+            oldval.respond_to?(:merge) ? oldval.merge(newval) : newval
+          end
+        end
+        if @instrumentation_key
+          ActiveSupport::Notifications.instrument @instrumentation_key, params
+        else
+          @logger.info params
+        end
+        @included_loggers.each { |included_logger| included_logger.after if included_logger.respond_to?(:after) }
         nil
       end
 
       def call!(env)
         super
-      ensure
-        ActiveSupport::Notifications.unsubscribe(@subscription) if @subscription
       end
 
       protected
+
+      def response
+        begin
+          super
+        rescue
+          nil
+        end
+      end
+
       def parameters
         {
-            path: request.path,
-            params: request.params.to_hash,
-            method: request.request_method,
+          status: response.nil? ? 'fail' : response.status,
+          time: {
             total: total_runtime,
-            db: @db_duration.round(2),
-            status: response.status
+            db: db_runtime,
+            view: view_runtime
+          },
+          method: request.request_method,
+          path: request.path,
+          params: request.params
         }
       end
 
       private
-      def logger
-        @logger ||= @options[:logger] || Logger.new(STDOUT)
-      end
-
       def request
         @request ||= ::Rack::Request.new(env)
       end
 
       def total_runtime
         ((stop_time - start_time) * 1000).round(2)
+      end
+
+      def view_runtime
+        total_runtime - db_runtime
+      end
+
+      def db_runtime
+        GrapeLogging::Timings.db_runtime.round(2)
+      end
+
+      def reset_db_runtime
+        GrapeLogging::Timings.reset_db_runtime
       end
 
       def start_time
@@ -57,6 +100,7 @@ module GrapeLogging
       def stop_time
         @stop_time ||= Time.now
       end
+
     end
   end
 end
