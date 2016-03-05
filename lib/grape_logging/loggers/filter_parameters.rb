@@ -6,17 +6,19 @@ module GrapeLogging
         @replacement = replacement
       end
 
-      def parameters(request, response)
-        filtered_parameters = request.params.clone
-        @filter_parameters.each do |param|
-          if filtered_parameters[param.to_s]
-            filtered_parameters[param.to_s] = @replacement
+      def parameters(request, _)
+        { params: replace_parameters(request.params.clone) }
+      end
+
+      private
+      def replace_parameters(parameters)
+        parameters.tap do |parameters|
+          @filter_parameters.each do |parameter_name|
+            if parameters.key?(parameter_name.to_s)
+              parameters[parameter_name.to_s] = @replacement
+            end
           end
         end
-
-        {
-          params: filtered_parameters
-        }
       end
     end
   end
