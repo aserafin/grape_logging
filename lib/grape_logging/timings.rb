@@ -15,7 +15,7 @@ module GrapeLogging
     end
 
     def append_db_runtime(event)
-      self.db_runtime = event.duration
+      self.db_runtime += event.duration
     end
   end
 end

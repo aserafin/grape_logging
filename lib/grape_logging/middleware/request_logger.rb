@@ -11,36 +11,30 @@ module GrapeLogging
 
       def initialize(app, options = {})
         super
-        if options[:instrumentation_key]
-          @instrumentation_key = options[:instrumentation_key]
-        else
-          @logger = @options[:logger] || Logger.new(STDOUT)
-          @logger.formatter = @options[:formatter] || GrapeLogging::Formatters::Default.new
-        end
+
         @included_loggers = @options[:include] || []
+        @reporter = if options[:instrumentation_key]
+          Reporters::ActiveSupportReporter.new(@options[:instrumentation_key])
+        else
+          Reporters::LoggerReporter.new(@options[:logger], @options[:formatter])
+        end
       end
 
       def before
         reset_db_runtime
         start_time
-        @included_loggers.each(&:before)
+
+        invoke_included_loggers(:before)
       end
 
       def after
         stop_time
 
-        params = parameters
-        @included_loggers.each do |included_logger|
-          params.merge! included_logger.parameters(request, response) do |key, oldval, newval|
-            oldval.respond_to?(:merge) ? oldval.merge(newval) : newval
-          end
-        end
-        if @instrumentation_key
-          ActiveSupport::Notifications.instrument @instrumentation_key, params
-        else
-          @logger.info params
-        end
-        @included_loggers.each { |included_logger| included_logger.after if included_logger.respond_to?(:after) }
+        params = collect_parameters
+        @reporter.perform(params)
+
+        invoke_included_loggers(:after)
+
         nil
       end
 
@@ -101,6 +95,21 @@ module GrapeLogging
         @stop_time ||= Time.now
       end
 
+      def collect_parameters
+        parameters.tap do |params|
+          @included_loggers.each do |logger|
+            params.merge! logger.parameters(request, response) do |_, oldval, newval|
+              oldval.respond_to?(:merge) ? oldval.merge(newval) : newval
+            end
+          end
+        end
+      end
+
+      def invoke_included_loggers(method_name)
+        @included_loggers.each do |logger|
+          logger.send(method_name) if logger.respond_to?(method_name)
+        end
+      end
     end
   end
 end
