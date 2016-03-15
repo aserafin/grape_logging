@@ -24,6 +24,8 @@ In your api file (somewhere on the top)
     logger.formatter = GrapeLogging::Formatters::Default.new
     use GrapeLogging::Middleware::RequestLogger, { logger: logger }
 
+**ProTip:** If your logger doesn't support setting formatter you can remove this line - it's optional
+
 ## Features
 
 ### Log Format
@@ -83,14 +85,6 @@ and then add an initializer in your Rails project:
     end
    
 The idea come from here: https://gist.github.com/teamon/e8ae16ffb0cb447e5b49
-
-There's some advantages to use this method:   
-
-  - You could use a logger that does not implement the ```formatter=```.   
-  Defaults Rails 3 (ActiveSupport::BufferedLogger) does not implement it.   
-  The Logging gem (https://github.com/TwP/logging) does not implement it neither.
-  
-  - If you use a logger that already format logs (as the Logging gem), the logs will be formatted by your logger.
 
 ### Logging exceptions
 
