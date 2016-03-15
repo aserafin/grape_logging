@@ -29,12 +29,8 @@ module GrapeLogging
 
       def after
         stop_time
-
-        params = collect_parameters
-        @reporter.perform(params)
-
+        @reporter.perform(collect_parameters)
         invoke_included_loggers(:after)
-
         nil
       end
 
