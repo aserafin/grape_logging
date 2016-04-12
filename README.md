@@ -58,7 +58,7 @@ You can include logging of other parts of the request / response cycle by includ
 The `FilterParameters` logger will filter out sensitive parameters from your logs. If mounted inside rails, will use the `Rails.application.config.filter_parameters` by default. Otherwise, you must specify a list of keys to filter out.
 
 #### ClientEnv
-The `FilterParameters` logger will add `ip` and user agent `ua` in your log.
+The `ClientEnv` logger will add `ip` and user agent `ua` in your log.
 
 ### Logging to file and STDOUT
 
