@@ -51,7 +51,8 @@ You can include logging of other parts of the request / response cycle by includ
         logger: logger,
         include: [ GrapeLogging::Loggers::Response.new,
                    GrapeLogging::Loggers::FilterParameters.new,
-                   GrapeLogging::Loggers::ClientEnv.new ]
+                   GrapeLogging::Loggers::ClientEnv.new,
+                   GrapeLogging::Loggers::RequestHeaders.new ]
     end
 
 #### FilterParameters
