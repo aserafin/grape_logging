@@ -46,8 +46,6 @@ You can change the formatter like so
 
 You can include logging of other parts of the request / response cycle by including subclasses of `GrapeLogging::Loggers::Base`
 
-If you want to get information of request headers, you can add `GrapeLogging::Loggers::RequestHeaders.new` just as follows.
-
     class MyAPI < Grape::API
       use GrapeLogging::Middleware::RequestLogger,
         logger: logger,
@@ -62,6 +60,9 @@ The `FilterParameters` logger will filter out sensitive parameters from your log
 
 #### ClientEnv
 The `ClientEnv` logger will add `ip` and user agent `ua` in your log.
+
+#### RequestHeaders
+The `RequestHeaders` logger will add `request headers` in your log.
 
 ### Logging to file and STDOUT
 
