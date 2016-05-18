@@ -51,7 +51,8 @@ You can include logging of other parts of the request / response cycle by includ
         logger: logger,
         include: [ GrapeLogging::Loggers::Response.new,
                    GrapeLogging::Loggers::FilterParameters.new,
-                   GrapeLogging::Loggers::ClientEnv.new ]
+                   GrapeLogging::Loggers::ClientEnv.new,
+                   GrapeLogging::Loggers::RequestHeaders.new ]
     end
 
 #### FilterParameters
@@ -59,6 +60,9 @@ The `FilterParameters` logger will filter out sensitive parameters from your log
 
 #### ClientEnv
 The `ClientEnv` logger will add `ip` and user agent `ua` in your log.
+
+#### RequestHeaders
+The `RequestHeaders` logger will add `request headers` in your log.
 
 ### Logging to file and STDOUT
 
