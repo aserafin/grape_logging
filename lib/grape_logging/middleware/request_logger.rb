@@ -9,6 +9,10 @@ module GrapeLogging
         GrapeLogging::Timings.append_db_runtime(event)
       end if defined?(ActiveRecord)
 
+      # Persist response status & response (body)
+      # to use int in parameters
+      attr_accessor :response_status, :response_body
+
       def initialize(app, options = {})
         super
 
@@ -23,34 +27,71 @@ module GrapeLogging
       def before
         reset_db_runtime
         start_time
-
         invoke_included_loggers(:before)
       end
 
-      def after
+      def after(status, response)
         stop_time
+
+        # Response status
+        @response_status = status
+        @response_body   = response
+
+        # Perform repotters
         @reporter.perform(collect_parameters)
+
+        # Invoke loggers
         invoke_included_loggers(:after)
         nil
       end
 
+      # Call stack and parse responses & status.
+      #
+      # @note Exceptions are logged as 500 status & re-raised.
       def call!(env)
-        super
+        @env = env
+
+        # Before hook
+        before
+
+        # Catch error
+        error = catch(:error) do
+          begin
+            @app_response = @app.call(@env)
+          rescue => e
+            # Log as 500 + message
+            after(500, e.message)
+
+            # Re-raise exception
+            raise e
+          end
+          nil
+        end
+
+        # Get status & response from app_response
+        # when no error occures.
+        if error
+          # Call with error & response
+          after(error[:status], error[:message])
+
+          # Throw again
+          throw(:error, error)
+        else
+          status, _, resp = *@app_response
+
+          # Call after hook properly
+          after(status, resp)
+        end
+
+        # Otherwise return original response
+        @app_response
       end
 
       protected
 
-      def response
-        begin
-          super
-        rescue
-          nil
-        end
-      end
-
       def parameters
         {
-          status: response.nil? ? 'fail' : response.status,
+          status: response_status,
           time: {
             total: total_runtime,
             db: db_runtime,
@@ -64,8 +105,9 @@ module GrapeLogging
       end
 
       private
+
       def request
-        @request ||= ::Rack::Request.new(env)
+        @request ||= ::Rack::Request.new(@env)
       end
 
       def total_runtime
@@ -95,7 +137,7 @@ module GrapeLogging
       def collect_parameters
         parameters.tap do |params|
           @included_loggers.each do |logger|
-            params.merge! logger.parameters(request, response) do |_, oldval, newval|
+            params.merge! logger.parameters(request, response_body) do |_, oldval, newval|
               oldval.respond_to?(:merge) ? oldval.merge(newval) : newval
             end
           end
