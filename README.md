@@ -41,7 +41,7 @@ If you prefer some other format I strongly encourage you to do pull request with
 You can change the formatter like so
 ```ruby
 class MyAPI < Grape::API
-  use GrapeLogging::Middleware::RequestLogger, logger: logger, format: MyFormatter.new
+  use GrapeLogging::Middleware::RequestLogger, logger: logger, formatter: MyFormatter.new
 end
 ```
 
