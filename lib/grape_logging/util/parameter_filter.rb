@@ -1,5 +1,9 @@
 if defined?(Rails.application)
-  ParameterFilter = ActionDispatch::Http::ParameterFilter
+  class ParameterFilter < ActionDispatch::Http::ParameterFilter
+    def initialize(_replacement, filter_parameters)
+      super(filter_parameters)
+    end
+  end
 else
   #
   # lifted from https://github.com/rails/rails/blob/master/actionpack/lib/action_dispatch/http/parameter_filter.rb
