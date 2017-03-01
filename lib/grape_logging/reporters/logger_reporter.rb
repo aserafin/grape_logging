@@ -2,7 +2,9 @@ module Reporters
   class LoggerReporter
     def initialize(logger, formatter)
       @logger = logger || Logger.new(STDOUT)
-      @logger.formatter = formatter || GrapeLogging::Formatters::Default.new if @logger.respond_to?(:formatter=)
+      if @logger.respond_to?(:formatter=)
+        @logger.formatter = formatter || @logger.formatter || GrapeLogging::Formatters::Default.new
+      end
     end
 
     def perform(params)
