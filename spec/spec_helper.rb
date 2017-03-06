@@ -1,4 +1,5 @@
 $:.unshift '.'
+
 require 'lib/grape_logging'
 
 RSpec.configure do |config|

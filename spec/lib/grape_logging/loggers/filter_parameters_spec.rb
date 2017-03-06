@@ -1,4 +1,6 @@
+require 'spec_helper'
 require 'ostruct'
+
 
 describe GrapeLogging::Loggers::FilterParameters do
   let(:filtered_parameters) { %w[one four] }

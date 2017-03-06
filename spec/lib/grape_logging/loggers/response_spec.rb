@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'ostruct'
 
 describe GrapeLogging::Loggers::Response do
