@@ -1,6 +1,7 @@
 # grape_logging
 
 [![Code Climate](https://codeclimate.com/github/aserafin/grape_logging/badges/gpa.svg)](https://codeclimate.com/github/aserafin/grape_logging)
+[![Build Status](https://travis-ci.org/aserafin/grape_logging.svg?branch=master)](https://travis-ci.org/aserafin/grape_logging)
 
 ## Installation
 
