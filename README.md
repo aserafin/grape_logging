@@ -78,6 +78,18 @@ log_file.sync = true
 logger Logger.new GrapeLogging::MultiIO.new(STDOUT, log_file)
 ```
 
+### Set the log level
+
+You can control the level used to log. The default is `info`.
+
+```ruby
+class MyAPI < Grape::API
+  use GrapeLogging::Middleware::RequestLogger,
+    logger: logger,
+    log_level: 'debug'
+end
+```
+
 ### Logging via Rails instrumentation
 
 You can choose to not pass the logger to ```grape_logging``` but instead send logs to Rails instrumentation in order to let Rails and its configured Logger do the log job, for example.

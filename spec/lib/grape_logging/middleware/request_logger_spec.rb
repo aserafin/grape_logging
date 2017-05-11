@@ -38,6 +38,16 @@ describe GrapeLogging::Middleware::RequestLogger do
     end
   end
 
+  %w[info error debug].each do |level|
+    context "with level #{level}" do
+      it 'should log at correct level' do
+        options[:log_level] = level
+        expect(logger).to receive(level)
+        subject
+      end
+    end
+  end
+
   context 'with a nil response' do
     let(:app) { proc{ [500, {} , nil] } }
     it 'should log "fail" instead of a status' do
