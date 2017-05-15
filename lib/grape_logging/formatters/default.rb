@@ -5,6 +5,7 @@ module GrapeLogging
         "[#{datetime}] #{severity} -- #{format(data)}\n"
       end
 
+      private
       def format(data)
         if data.is_a?(String)
           data
@@ -17,7 +18,6 @@ module GrapeLogging
         end
       end
 
-      private
       def format_hash(hash)
         hash.keys.sort.map { |key| "#{key}=#{hash[key]}" }.join(' ')
       end
