@@ -7,7 +7,8 @@ module GrapeLogging
           severity: severity,
           duration: time[:total],
           db: time[:db],
-          view: time[:view]
+          view: time[:view],
+          datetime: datetime.iso8601
         }.merge(data)
         ::Lograge.formatter.call(attributes) + "\n"
       end
