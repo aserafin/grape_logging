@@ -53,7 +53,7 @@ describe GrapeLogging::Middleware::RequestLogger do
     it 'should log "fail" instead of a status' do
       expect(Rack::MockResponse).to receive(:new) { nil }
       expect(logger).to receive('info') do |arguments|
-        expect(arguments[:status]).to eq 'fail'
+        expect(arguments[:status]).to eq 500
       end
       subject
     end
