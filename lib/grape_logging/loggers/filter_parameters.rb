@@ -1,23 +1,35 @@
 module GrapeLogging
   module Loggers
     class FilterParameters < GrapeLogging::Loggers::Base
-      def initialize(filter_parameters = nil, replacement = '[FILTERED]')
+      AD_PARAMS = 'action_dispatch.request.parameters'.freeze
+
+      def initialize(filter_parameters = nil, replacement = nil, exceptions = %w(controller action format))
         @filter_parameters = filter_parameters || (defined?(Rails.application) ? Rails.application.config.filter_parameters : [])
-        @replacement = replacement
+        @replacement = replacement || '[FILTERED]'
+        @exceptions = exceptions
       end
 
       def parameters(request, _)
-        { params: replace_parameters(request.params.clone) }
+        { params: safe_parameters(request) }
       end
 
       private
-      def replace_parameters(parameters)
-        @filter_parameters.each do |parameter_name|
-          if parameters.key?(parameter_name.to_s)
-            parameters[parameter_name.to_s] = @replacement
-          end
+
+      def parameter_filter
+        @parameter_filter ||= ParameterFilter.new(@replacement, @filter_parameters)
+      end
+
+      def safe_parameters(request)
+        # Now this logger can work also over Rails requests
+        if request.params.empty?
+          clean_parameters(request.env[AD_PARAMS] || {})
+        else
+          clean_parameters(request.params)
         end
-        parameters
+      end
+
+      def clean_parameters(parameters)
+        parameter_filter.filter(parameters).reject{ |key, _value| @exceptions.include?(key) }
       end
     end
   end
