@@ -1,4 +1,4 @@
-if defined?(Rails.application)
+if defined?(::Rails.application)
   class ParameterFilter < ActionDispatch::Http::ParameterFilter
     def initialize(_replacement, filter_parameters)
       super(filter_parameters)
