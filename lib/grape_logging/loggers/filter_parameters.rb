@@ -4,7 +4,7 @@ module GrapeLogging
       AD_PARAMS = 'action_dispatch.request.parameters'.freeze
 
       def initialize(filter_parameters = nil, replacement = nil, exceptions = %w(controller action format))
-        @filter_parameters = filter_parameters || (defined?(Rails.application) ? Rails.application.config.filter_parameters : [])
+        @filter_parameters = filter_parameters || (defined?(::Rails.application) ? ::Rails.application.config.filter_parameters : [])
         @replacement = replacement || '[FILTERED]'
         @exceptions = exceptions
       end

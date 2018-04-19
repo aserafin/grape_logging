@@ -33,11 +33,83 @@ use GrapeLogging::Middleware::RequestLogger, { logger: logger }
 
 ### Log Format
 
-With the default configuration you will get nice log message
+There are formatters provided for you, or you can provide your own.
 
-    [2015-04-16 12:52:12 +0200] INFO -- 200 -- total=2.06 db=0.36 -- PATCH /your_app/endpoint params={"some_param"=>{"value_1"=>"123", "value_2"=>"456"}}
+#### `GrapeLogging::Formatters::Default`
 
-If you prefer some other format I strongly encourage you to do pull request with new formatter class ;)
+    [2015-04-16 12:52:12 +0200] INFO -- 200 -- total=2.06 db=0.36 -- PATCH /api/endpoint params={"some_param"=>{"value_1"=>"123", "value_2"=>"456"}}
+
+#### `GrapeLogging::Formatters::Json`
+
+```json
+{
+  "date": "2015-04-16 12:52:12+0200",
+  "severity": "INFO",
+  "data": {
+    "status": 200,
+    "time": {
+      "total": 2.06,
+      "db": 0.36,
+      "view": 1.70
+    },
+    "method": "PATCH",
+    "path": "/api/endpoint",
+    "params": {
+      "value_1": "123",
+      "value_2": "456"
+    },
+    "host": "localhost"
+  }
+}
+```
+
+#### `GrapeLogging::Formatters::Lograge`
+
+    severity="INFO", duration=2.06, db=0.36, view=1.70, datetime="2015-04-16 12:52:12+0200", status=200, method="PATCH", path="/api/endpoint", params={}, host="localhost"
+
+#### `GrapeLogging::Formatters::Logstash`
+
+```json
+{
+  "@timestamp": "2015-04-16 12:52:12+0200",
+  "severity": "INFO",
+  "status": 200,
+  "time": {
+    "total": 2.06,
+    "db": 0.36,
+    "view": 1.70
+  },
+  "method": "PATCH",
+  "path": "/api/endpoint",
+  "params": {
+    "value_1": "123",
+    "value_2": "456"
+  },
+  "host": "localhost"
+}
+```
+
+#### `GrapeLogging::Formatters::Rails`
+
+Rails will print the "Started..." line:
+
+    Started GET "/api/endpoint" for ::1 at 2015-04-16 12:52:12 +0200
+      User Load (0.7ms)  SELECT "users".* FROM "users" WHERE  "users"."id" = $1
+      ...
+
+The `Rails` formatter adds the last line of the request, like a standard Rails request:
+
+    Completed 200 OK in 349ms (Views: 250.1ms | DB: 98.63ms)
+
+#### Custom
+
+You can provide your own class that implements the `call` method returning a `String`:
+
+```ruby
+def call(severity, datetime, _, data)
+   ...
+end
+```
 
 You can change the formatter like so
 ```ruby
@@ -45,6 +117,8 @@ class MyAPI < Grape::API
   use GrapeLogging::Middleware::RequestLogger, logger: logger, formatter: MyFormatter.new
 end
 ```
+
+If you prefer some other format I strongly encourage you to do pull request with new formatter class ;)
 
 ### Customising What Is Logged
 
