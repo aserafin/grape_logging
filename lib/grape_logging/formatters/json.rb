@@ -6,7 +6,7 @@ module GrapeLogging
           date: datetime,
           severity: severity,
           data: format(data)
-        }.to_json
+        }.to_json + "\n"
       end
 
       private
