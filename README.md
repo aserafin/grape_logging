@@ -24,7 +24,7 @@ In your api file (somewhere on the top)
 ```ruby
 require 'grape_logging'
 logger.formatter = GrapeLogging::Formatters::Default.new
-use GrapeLogging::Middleware::RequestLogger, { logger: logger }
+insert 0, GrapeLogging::Middleware::RequestLogger, { logger: logger }
 ```
 
 **ProTip:** If your logger doesn't support setting formatter you can remove this line - it's optional
@@ -114,7 +114,7 @@ end
 You can change the formatter like so
 ```ruby
 class MyAPI < Grape::API
-  use GrapeLogging::Middleware::RequestLogger, logger: logger, formatter: MyFormatter.new
+  insert 0, GrapeLogging::Middleware::RequestLogger, logger: logger, formatter: MyFormatter.new
 end
 ```
 
@@ -125,7 +125,7 @@ If you prefer some other format I strongly encourage you to do pull request with
 You can include logging of other parts of the request / response cycle by including subclasses of `GrapeLogging::Loggers::Base`
 ```ruby
 class MyAPI < Grape::API
-  use GrapeLogging::Middleware::RequestLogger,
+  insert 0, GrapeLogging::Middleware::RequestLogger,
     logger: logger,
     include: [ GrapeLogging::Loggers::Response.new,
                GrapeLogging::Loggers::FilterParameters.new,
@@ -158,7 +158,7 @@ You can control the level used to log. The default is `info`.
 
 ```ruby
 class MyAPI < Grape::API
-  use GrapeLogging::Middleware::RequestLogger,
+  insert 0, GrapeLogging::Middleware::RequestLogger,
     logger: logger,
     log_level: 'debug'
 end
@@ -170,7 +170,7 @@ You can choose to not pass the logger to ```grape_logging``` but instead send lo
 First, config ```grape_logging```, like that:
 ```ruby
 class MyAPI < Grape::API
-  use GrapeLogging::Middleware::RequestLogger,
+  insert 0, GrapeLogging::Middleware::RequestLogger,
     instrumentation_key: 'grape_key',
     include: [ GrapeLogging::Loggers::Response.new,
                GrapeLogging::Loggers::FilterParameters.new ]
