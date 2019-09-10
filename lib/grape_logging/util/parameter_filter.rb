@@ -1,7 +1,15 @@
 if defined?(::Rails.application)
-  class ParameterFilter < ActiveSupport::ParameterFilter
-    def initialize(_replacement, filter_parameters)
-      super(filter_parameters)
+  if Gem::Version.new(Rails.version) < Gem::Version.new('6.0.0')
+    class ParameterFilter < ActionDispatch::Http::ParameterFilter
+      def initialize(_replacement, filter_parameters)
+        super(filter_parameters)
+      end
+    end
+  else
+    class ParameterFilter < ActiveSupport::ParameterFilter
+      def initialize(_replacement, filter_parameters)
+        super(filter_parameters)
+      end
     end
   end
 else
