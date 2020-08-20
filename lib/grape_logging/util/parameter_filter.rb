@@ -6,6 +6,8 @@ if defined?(::Rails.application)
       end
     end
   else
+    require "active_support/parameter_filter"
+
     class ParameterFilter < ActiveSupport::ParameterFilter
       def initialize(_replacement, filter_parameters)
         super(filter_parameters)
