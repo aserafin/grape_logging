@@ -1,13 +1,15 @@
+require 'grape/middleware/helpers'
 require 'grape/middleware/base'
 
 module GrapeLogging
   module Middleware
     class RequestLogger < Grape::Middleware::Base
-
-      ActiveSupport::Notifications.subscribe('sql.active_record') do |*args|
-        event = ActiveSupport::Notifications::Event.new(*args)
-        GrapeLogging::Timings.append_db_runtime(event)
-      end if defined?(ActiveRecord)
+      if defined?(ActiveRecord)
+        ActiveSupport::Notifications.subscribe('sql.active_record') do |*args|
+          event = ActiveSupport::Notifications::Event.new(*args)
+          GrapeLogging::Timings.append_db_runtime(event)
+        end
+      end
 
       # Persist response status & response (body)
       # to use int in parameters
@@ -18,10 +20,10 @@ module GrapeLogging
 
         @included_loggers = @options[:include] || []
         @reporter = if options[:instrumentation_key]
-          Reporters::ActiveSupportReporter.new(@options[:instrumentation_key])
-        else
-          Reporters::LoggerReporter.new(@options[:logger], @options[:formatter], @options[:log_level])
-        end
+                      Reporters::ActiveSupportReporter.new(@options[:instrumentation_key])
+                    else
+                      Reporters::LoggerReporter.new(@options[:logger], @options[:formatter], @options[:log_level])
+                    end
       end
 
       def before
@@ -58,7 +60,7 @@ module GrapeLogging
         error = catch(:error) do
           begin
             @app_response = @app.call(@env)
-          rescue => e
+          rescue StandardError => e
             # Log as 500 + message
             after(e.respond_to?(:status) ? e.status : 500, e.message)
 
@@ -92,7 +94,7 @@ module GrapeLogging
       def parameters
         {
           status: response_status,
-          time: {
+          time_consumed: {
             total: total_runtime,
             db: db_runtime,
             view: view_runtime

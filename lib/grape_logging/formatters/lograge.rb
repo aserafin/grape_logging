@@ -2,7 +2,7 @@ module GrapeLogging
   module Formatters
     class Lograge
       def call(severity, datetime, _, data)
-        time = data.delete :time
+        time = data.delete :time_consumed
         attributes = {
           severity: severity,
           duration: time[:total],
