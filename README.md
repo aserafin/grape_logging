@@ -19,12 +19,12 @@ Or install it yourself as:
 
 ## Basic Usage
 
-In your api file (somewhere on the top)
+In your api file (somewhere on the top), insert grape logging middleware before grape error middleware. This is important due to the behaviour of `lib/grape/middleware/error.rb`, which manipulates the status of the response when there is an error. 
 
 ```ruby
 require 'grape_logging'
 logger.formatter = GrapeLogging::Formatters::Default.new
-use GrapeLogging::Middleware::RequestLogger, { logger: logger }
+insert_before Grape::Middleware::Error, GrapeLogging::Middleware::RequestLogger, { logger: logger }
 ```
 
 **ProTip:** If your logger doesn't support setting formatter you can remove this line - it's optional
