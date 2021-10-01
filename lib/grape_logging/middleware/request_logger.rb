@@ -115,7 +115,7 @@ module GrapeLogging
       end
 
       def view_runtime
-        total_runtime - db_runtime
+        (total_runtime - db_runtime).round(2)
       end
 
       def db_runtime
