@@ -9,7 +9,7 @@ describe GrapeLogging::Loggers::Response do
 
     it 'returns an array of parseable JSON objects' do
       expect(subject.parameters(nil, response)).to eq({
-        response: [response.body.first.dup]
+        response: [JSON.parse(response.body.first)]
       })
     end
   end
