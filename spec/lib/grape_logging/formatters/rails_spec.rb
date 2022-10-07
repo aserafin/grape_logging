@@ -37,7 +37,7 @@ describe GrapeLogging::Formatters::Rails do
         lines = message.split("\n")
 
         expect(lines[0]).to eq "I [2018-03-02 10:35:04 +1300] INFO -- : Message (ArgumentError)"
-        expect(lines[1]).to include 'grape_logging'
+        expect(lines[1]).to include 'rspec/core/example'
         expect(lines.size).to be > 1
       end
     end
