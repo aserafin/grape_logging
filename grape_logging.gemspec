@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Out of the box request logging for Grape!}
   spec.description   = %q{This gem provides simple request logging for Grape with just few lines of code you have to put in your project! In return you will get response codes, paths, parameters and more!}
-  spec.homepage      = 'http://github.com/aserafin/grape_logging'
+  spec.homepage      = 'https://github.com/araccaine/grape_logging'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
@@ -22,8 +22,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'grape'
   spec.add_dependency 'rack'
 
-  spec.add_development_dependency 'bundler', '~> 1.8'
-  spec.add_development_dependency 'rake', '~> 10.0'
-  spec.add_development_dependency 'rspec', '~> 3.5'
-  spec.add_development_dependency 'pry-byebug', '~> 3.4.2'
+  spec.add_development_dependency 'bundler', '~> 2.4'
+  spec.add_development_dependency 'rake', '~> 11.3'
+  spec.add_development_dependency 'rspec', '~> 3.13'
+  spec.add_development_dependency 'pry-byebug', '~> 3.10'
 end
