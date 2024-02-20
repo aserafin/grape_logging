@@ -1,3 +1,4 @@
+require 'grape/middleware/helpers'
 require 'grape/middleware/base'
 
 module GrapeLogging
