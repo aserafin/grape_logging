@@ -37,7 +37,7 @@ module GrapeLogging
         @response_status = status
         @response_body   = response
 
-        # Perform repotters
+        # Perform reporters
         @reporter.perform(collect_parameters)
 
         # Invoke loggers
@@ -69,7 +69,7 @@ module GrapeLogging
         end
 
         # Get status & response from app_response
-        # when no error occures.
+        # when no error occurs.
         if error
           # Call with error & response
           after(error[:status], error[:message])
