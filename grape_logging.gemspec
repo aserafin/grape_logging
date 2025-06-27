@@ -21,7 +21,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'grape', '< 2.4.0'
   spec.add_dependency 'rack'
 
-  spec.add_development_dependency 'bundler', '~> 2.4'
   spec.add_development_dependency 'rake', '~> 13.3'
   spec.add_development_dependency 'rspec', '~> 3.5'
 end
