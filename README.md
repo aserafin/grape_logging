@@ -1,7 +1,6 @@
 # grape_logging
 
-[![Code Climate](https://codeclimate.com/github/aserafin/grape_logging/badges/gpa.svg)](https://codeclimate.com/github/aserafin/grape_logging)
-[![Build Status](https://travis-ci.org/aserafin/grape_logging.svg?branch=master)](https://travis-ci.org/aserafin/grape_logging)
+[![CI](https://github.com/aserafin/grape_logging/actions/workflows/ci.yml/badge.svg)](https://github.com/aserafin/grape_logging/actions/workflows/ci.yml)
 
 ## Installation
 
@@ -19,7 +18,7 @@ Or install it yourself as:
 
 ## Basic Usage
 
-In your api file (somewhere on the top), insert grape logging middleware before grape error middleware. This is important due to the behaviour of `lib/grape/middleware/error.rb`, which manipulates the status of the response when there is an error. 
+In your api file (somewhere on the top), insert grape logging middleware before grape error middleware. This is important due to the behaviour of `lib/grape/middleware/error.rb`, which manipulates the status of the response when there is an error.
 
 ```ruby
 require 'grape_logging'
