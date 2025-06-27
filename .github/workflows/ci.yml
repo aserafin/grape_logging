@@ -1,4 +1,4 @@
-name: Grape Logging CI
+name: CI
 on:
   push:
     branches: [master]
