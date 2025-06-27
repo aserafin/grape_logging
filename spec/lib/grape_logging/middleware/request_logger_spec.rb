@@ -27,7 +27,7 @@ describe GrapeLogging::Middleware::RequestLogger do
   end
 
   [301, 404, 500].each do |the_status|
-    context "when the respnse status is #{the_status}" do
+    context "when the response status is #{the_status}" do
       let(:status) { the_status }
       it 'should log the correct status code' do
         expect(logger).to receive('info') do |arguments|

@@ -6,7 +6,7 @@ describe GrapeLogging::Loggers::RequestHeaders do
     OpenStruct.new(env: {HTTP_REFERER: 'http://example.com', HTTP_ACCEPT: 'text/plain'})
   end
 
-  let(:mock_request_with_unhandle_headers) do
+  let(:mock_request_with_unhandled_headers) do
     OpenStruct.new(env: {
       HTTP_REFERER: 'http://example.com',
       "PATH_INFO"=>"/api/v1/users"
@@ -27,7 +27,7 @@ describe GrapeLogging::Loggers::RequestHeaders do
   end
 
   it 'only handle things which start with HTTP_' do
-    expect(subject.parameters(mock_request_with_unhandle_headers, nil)).to eq({
+    expect(subject.parameters(mock_request_with_unhandled_headers, nil)).to eq({
       headers: {'Referer' => 'http://example.com' }
     })
   end

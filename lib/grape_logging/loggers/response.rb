@@ -9,7 +9,7 @@ module GrapeLogging
 
       # In some cases, response.body is not parseable by JSON.
       # For example, if you POST on a PUT endpoint, response.body is egal to """".
-      # It's strange but it's the Grape behavior...
+      # It's strange, but it's the Grape behavior...
       def serialized_response_body(response)
 
         if response.respond_to?(:body)
