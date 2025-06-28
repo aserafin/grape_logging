@@ -1,5 +1,6 @@
 # grape_logging
 
+[![Gem Version](https://badge.fury.io/rb/grape_logging.svg)](https://badge.fury.io/rb/grape_logging)
 [![CI](https://github.com/aserafin/grape_logging/actions/workflows/ci.yml/badge.svg)](https://github.com/aserafin/grape_logging/actions/workflows/ci.yml)
 
 ## Installation
@@ -18,7 +19,7 @@ Or install it yourself as:
 
 ## Basic Usage
 
-In your api file (somewhere on the top), insert grape logging middleware before grape error middleware. This is important due to the behaviour of `lib/grape/middleware/error.rb`, which manipulates the status of the response when there is an error.
+In your API file (somewhere on the top), insert grape logging middleware before grape error middleware. This is important due to the behaviour of `lib/grape/middleware/error.rb`, which manipulates the status of the response when there is an error.
 
 ```ruby
 require 'grape_logging'
@@ -158,7 +159,7 @@ You can control the level used to log. The default is `info`.
 
 ```ruby
 class MyAPI < Grape::API
-  insert_before Grape::Middleware::Error, 
+  insert_before Grape::Middleware::Error,
     GrapeLogging::Middleware::RequestLogger,
     logger: logger,
     log_level: 'debug'
