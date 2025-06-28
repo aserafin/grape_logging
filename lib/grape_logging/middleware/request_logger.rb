@@ -56,16 +56,14 @@ module GrapeLogging
 
         # Catch error
         error = catch(:error) do
-          begin
-            @app_response = @app.call(@env)
-          rescue => e
-            # Log as 500 + message
-            after(e.respond_to?(:status) ? e.status : 500, e.message)
-
-            # Re-raise exception
-            raise e
-          end
+          @app_response = @app.call(@env)
           nil
+        rescue StandardError => e
+          # Log as 500 + message
+          after(e.respond_to?(:status) ? e.status : 500, e.message)
+
+          # Re-raise exception
+          raise e
         end
 
         # Get status & response from app_response
