@@ -4,12 +4,13 @@ require 'ostruct'
 describe GrapeLogging::Loggers::Response do
   context 'with a parseable JSON body' do
     let(:response) do
-      OpenStruct.new(body: [%q{{"one": "two", "three": {"four": 5}}}])
+      OpenStruct.new(body: [{"one": "two", "three": {"four": 5}}])
     end
 
-    it 'returns an array of parseable JSON objects' do
-      expect(subject.parameters(nil, response)).to eq({
-        response: [response.body.first.dup]
+    it 'returns an array of parsed JSON objects' do
+      expect(subject.parameters(nil, 200, response)).to eq({
+        status: 200,
+        response: [response.body.first],
       })
     end
   end
@@ -20,8 +21,9 @@ describe GrapeLogging::Loggers::Response do
     end
 
     it 'just returns the body' do
-      expect(subject.parameters(nil, response)).to eq({
-        response: response.body.dup
+      expect(subject.parameters(nil, 200, response)).to eq({
+        status: 200,
+        response: response.body,
       })
     end
   end

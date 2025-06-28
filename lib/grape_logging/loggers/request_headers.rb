@@ -4,7 +4,7 @@ module GrapeLogging
 
       HTTP_PREFIX = 'HTTP_'.freeze
 
-      def parameters(request, _)
+      def parameters(request, _status, _response_body)
         headers = {}
 
         request.env.each_pair do |k, v|

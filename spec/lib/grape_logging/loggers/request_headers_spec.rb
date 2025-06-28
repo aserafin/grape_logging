@@ -21,7 +21,7 @@ describe GrapeLogging::Loggers::RequestHeaders do
   end
 
   it 'strips HTTP_ from the parameter' do
-    expect(subject.parameters(mock_request, nil)).to eq({
+    expect(subject.parameters(mock_request, 200, nil)).to eq({
       headers: {'Referer' => 'http://example.com', 'Accept' => 'text/plain'}
     })
   end
@@ -33,7 +33,7 @@ describe GrapeLogging::Loggers::RequestHeaders do
   end
 
   it 'substitutes _ with -' do
-    expect(subject.parameters(mock_request_with_long_headers, nil)).to eq({
+    expect(subject.parameters(mock_request_with_long_headers, 200, nil)).to eq({
       headers: {'Referer' => 'http://example.com', 'User-Agent' => 'Mozilla/5.0' }
     })
   end

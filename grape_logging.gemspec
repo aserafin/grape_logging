@@ -5,8 +5,8 @@ require 'grape_logging/version'
 Gem::Specification.new do |spec|
   spec.name          = 'grape_logging'
   spec.version       = GrapeLogging::VERSION
-  spec.authors       = ['aserafin']
-  spec.email         = ['adrian@softmad.pl']
+  spec.authors       = ['aserafin', 'Sami Samhuri']
+  spec.email         = ['adrian@softmad.pl', 'sami@samhuri.net']
 
   spec.summary       = %q{Out of the box request logging for Grape!}
   spec.description   = %q{This gem provides simple request logging for Grape with just few lines of code you have to put in your project! In return you will get response codes, paths, parameters and more!}
@@ -22,5 +22,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'rack'
 
   spec.add_development_dependency 'rake', '~> 13.3'
-  spec.add_development_dependency 'rspec', '~> 3.5'
+  spec.add_development_dependency 'rspec', '~> 3.13'
 end

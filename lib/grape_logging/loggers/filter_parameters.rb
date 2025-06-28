@@ -9,7 +9,7 @@ module GrapeLogging
         @exceptions = exceptions
       end
 
-      def parameters(request, _)
+      def parameters(request, _status, _response_body)
         { params: safe_parameters(request) }
       end
 

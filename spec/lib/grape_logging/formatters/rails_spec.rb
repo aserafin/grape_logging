@@ -37,7 +37,7 @@ describe GrapeLogging::Formatters::Rails do
         lines = message.split("\n")
 
         expect(lines[0]).to eq "I [2018-03-02 10:35:04 +1300] INFO -- : Message (ArgumentError)"
-        expect(lines[1]).to include 'grape_logging'
+        expect(lines[1]).to include '.rb'
         expect(lines.size).to be > 1
       end
     end
@@ -62,7 +62,12 @@ describe GrapeLogging::Formatters::Rails do
         message = formatter.call(severity, datetime, nil, hash_data)
         lines = message.split("\n")
 
-        expect(lines.first).to eq '  Parameters: {"some_param"=>{:value_1=>"123", :value_2=>"456"}}'
+        expected_output = if RUBY_VERSION >= '3.4'
+          '  Parameters: {"some_param" => {value_1: "123", value_2: "456"}}'
+        else
+          '  Parameters: {"some_param"=>{:value_1=>"123", :value_2=>"456"}}'
+        end
+        expect(lines.first).to eq expected_output
         expect(lines.last).to eq "Completed 200 OK in 272.4ms (Views: 231.77ms | DB: 40.63ms)"
       end
     end

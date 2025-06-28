@@ -15,12 +15,12 @@ describe GrapeLogging::Loggers::ClientEnv do
     end
 
     it 'sets the ip key' do
-      expect(subject.parameters(mock_request, nil)).to eq(ip: forwarded_for, ua: nil)
+      expect(subject.parameters(mock_request, 200, nil)).to eq(ip: forwarded_for, ua: nil)
     end
 
     it 'prefers the forwarded_for over the remote_addr' do
       mock_request.env['REMOTE_ADDR'] = remote_addr
-      expect(subject.parameters(mock_request, nil)).to eq(ip: forwarded_for, ua: nil)
+      expect(subject.parameters(mock_request, 200, nil)).to eq(ip: forwarded_for, ua: nil)
     end
   end
 
@@ -32,7 +32,7 @@ describe GrapeLogging::Loggers::ClientEnv do
     end
 
     it 'sets the ip key' do
-      expect(subject.parameters(mock_request, nil)).to eq(ip: remote_addr, ua: nil)
+      expect(subject.parameters(mock_request, 200, nil)).to eq(ip: remote_addr, ua: nil)
     end
   end
 
@@ -44,7 +44,7 @@ describe GrapeLogging::Loggers::ClientEnv do
     end
 
     it 'sets the ua key' do
-      expect(subject.parameters(mock_request, nil)).to eq(ip: nil, ua: user_agent)
+      expect(subject.parameters(mock_request, 200, nil)).to eq(ip: nil, ua: user_agent)
     end
   end
 end
