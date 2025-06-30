@@ -18,6 +18,7 @@ module GrapeLogging
       end
 
       private
+
       def format_hash(hash)
         hash.keys.sort.map { |key| "#{key}=#{hash[key]}" }.join(' ')
       end
