@@ -67,7 +67,7 @@ else
         @replacement = replacement
         @regexps = regexps
         @deep_regexps = deep_regexps.any? ? deep_regexps : nil
-        @blocks  = blocks
+        @blocks = blocks
       end
 
       def call(original_params, parents = [])
