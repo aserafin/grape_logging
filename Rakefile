@@ -6,7 +6,7 @@ RSpec::Core::RakeTask.new(:spec)
 task default: :spec
 
 desc 'Release gem and create GitHub release'
-task :github_release => :release do
+task github_release: :release do
   require 'grape_logging/version'
 
   version = "v#{GrapeLogging::VERSION}"
