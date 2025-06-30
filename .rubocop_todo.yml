@@ -12,7 +12,7 @@
 # Include: **/*.gemspec, **/Gemfile, **/gems.rb
 Gemspec/DevelopmentDependencies:
   Exclude:
-    - 'grape_logging.gemspec'
+    - "grape_logging.gemspec"
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
@@ -20,36 +20,27 @@ Gemspec/DevelopmentDependencies:
 # Include: **/*.gemspec
 Gemspec/RequireMFA:
   Exclude:
-    - 'grape_logging.gemspec'
+    - "grape_logging.gemspec"
 
 # Offense count: 1
 # Configuration parameters: Severity, Include.
 # Include: **/*.gemspec
 Gemspec/RequiredRubyVersion:
   Exclude:
-    - 'grape_logging.gemspec'
-
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle, IndentOneStep, IndentationWidth.
-# SupportedStyles: case, end
-Layout/CaseIndentation:
-  Exclude:
-    - 'claude-scratchpad/cleaner_parameter_filter.rb'
+    - "grape_logging.gemspec"
 
 # Offense count: 4
 # This cop supports safe autocorrection (--autocorrect).
 Layout/ElseAlignment:
   Exclude:
-    - 'claude-scratchpad/cleaner_parameter_filter.rb'
-    - 'lib/grape_logging/middleware/request_logger.rb'
-    - 'spec/lib/grape_logging/formatters/rails_spec.rb'
+    - "lib/grape_logging/middleware/request_logger.rb"
+    - "spec/lib/grape_logging/formatters/rails_spec.rb"
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 Layout/EmptyLines:
   Exclude:
-    - 'spec/lib/grape_logging/loggers/filter_parameters_spec.rb'
+    - "spec/lib/grape_logging/loggers/filter_parameters_spec.rb"
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
@@ -57,7 +48,7 @@ Layout/EmptyLines:
 # SupportedStyles: around, only_before
 Layout/EmptyLinesAroundAccessModifier:
   Exclude:
-    - 'lib/grape_logging/formatters/default.rb'
+    - "lib/grape_logging/formatters/default.rb"
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
@@ -65,7 +56,7 @@ Layout/EmptyLinesAroundAccessModifier:
 # SupportedStyles: empty_lines, no_empty_lines
 Layout/EmptyLinesAroundBlockBody:
   Exclude:
-    - 'spec/lib/grape_logging/formatters/rails_spec.rb'
+    - "spec/lib/grape_logging/formatters/rails_spec.rb"
 
 # Offense count: 5
 # This cop supports safe autocorrection (--autocorrect).
@@ -73,15 +64,15 @@ Layout/EmptyLinesAroundBlockBody:
 # SupportedStyles: empty_lines, empty_lines_except_namespace, empty_lines_special, no_empty_lines, beginning_only, ending_only
 Layout/EmptyLinesAroundClassBody:
   Exclude:
-    - 'lib/grape_logging/formatters/rails.rb'
-    - 'lib/grape_logging/loggers/request_headers.rb'
-    - 'lib/grape_logging/middleware/request_logger.rb'
+    - "lib/grape_logging/formatters/rails.rb"
+    - "lib/grape_logging/loggers/request_headers.rb"
+    - "lib/grape_logging/middleware/request_logger.rb"
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 Layout/EmptyLinesAroundMethodBody:
   Exclude:
-    - 'lib/grape_logging/loggers/response.rb'
+    - "lib/grape_logging/loggers/response.rb"
 
 # Offense count: 7
 # This cop supports safe autocorrection (--autocorrect).
@@ -89,16 +80,15 @@ Layout/EmptyLinesAroundMethodBody:
 # SupportedStylesAlignWith: keyword, variable, start_of_line
 Layout/EndAlignment:
   Exclude:
-    - 'claude-scratchpad/cleaner_parameter_filter.rb'
-    - 'lib/grape_logging/middleware/request_logger.rb'
-    - 'spec/lib/grape_logging/formatters/rails_spec.rb'
+    - "lib/grape_logging/middleware/request_logger.rb"
+    - "spec/lib/grape_logging/formatters/rails_spec.rb"
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AllowForAlignment, AllowBeforeTrailingComments, ForceEqualSignAlignment.
 Layout/ExtraSpacing:
   Exclude:
-    - 'lib/grape_logging/util/parameter_filter.rb'
+    - "lib/grape_logging/util/parameter_filter.rb"
 
 # Offense count: 26
 # This cop supports safe autocorrection (--autocorrect).
@@ -115,16 +105,15 @@ Layout/FirstHashElementIndentation:
 # SupportedLastArgumentHashStyles: always_inspect, always_ignore, ignore_implicit, ignore_explicit
 Layout/HashAlignment:
   Exclude:
-    - 'spec/lib/grape_logging/loggers/request_headers_spec.rb'
+    - "spec/lib/grape_logging/loggers/request_headers_spec.rb"
 
 # Offense count: 5
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: Width, AllowedPatterns.
 Layout/IndentationWidth:
   Exclude:
-    - 'claude-scratchpad/cleaner_parameter_filter.rb'
-    - 'lib/grape_logging/middleware/request_logger.rb'
-    - 'spec/lib/grape_logging/formatters/rails_spec.rb'
+    - "lib/grape_logging/middleware/request_logger.rb"
+    - "spec/lib/grape_logging/formatters/rails_spec.rb"
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
@@ -133,7 +122,7 @@ Layout/IndentationWidth:
 # SupportedStylesForRationalLiterals: space, no_space
 Layout/SpaceAroundOperators:
   Exclude:
-    - 'spec/lib/grape_logging/loggers/request_headers_spec.rb'
+    - "spec/lib/grape_logging/loggers/request_headers_spec.rb"
 
 # Offense count: 6
 # This cop supports safe autocorrection (--autocorrect).
@@ -142,16 +131,16 @@ Layout/SpaceAroundOperators:
 # SupportedStylesForEmptyBraces: space, no_space
 Layout/SpaceBeforeBlockBraces:
   Exclude:
-    - 'lib/grape_logging/formatters/rails.rb'
-    - 'lib/grape_logging/loggers/filter_parameters.rb'
-    - 'lib/grape_logging/loggers/response.rb'
-    - 'spec/lib/grape_logging/middleware/request_logger_spec.rb'
+    - "lib/grape_logging/formatters/rails.rb"
+    - "lib/grape_logging/loggers/filter_parameters.rb"
+    - "lib/grape_logging/loggers/response.rb"
+    - "spec/lib/grape_logging/middleware/request_logger_spec.rb"
 
 # Offense count: 2
 # This cop supports safe autocorrection (--autocorrect).
 Layout/SpaceBeforeComma:
   Exclude:
-    - 'spec/lib/grape_logging/middleware/request_logger_spec.rb'
+    - "spec/lib/grape_logging/middleware/request_logger_spec.rb"
 
 # Offense count: 4
 # This cop supports safe autocorrection (--autocorrect).
@@ -160,8 +149,8 @@ Layout/SpaceBeforeComma:
 # SupportedStylesForEmptyBraces: space, no_space
 Layout/SpaceInsideBlockBraces:
   Exclude:
-    - 'lib/grape_logging/formatters/rails.rb'
-    - 'lib/grape_logging/multi_io.rb'
+    - "lib/grape_logging/formatters/rails.rb"
+    - "lib/grape_logging/multi_io.rb"
 
 # Offense count: 16
 # This cop supports safe autocorrection (--autocorrect).
@@ -170,10 +159,10 @@ Layout/SpaceInsideBlockBraces:
 # SupportedStylesForEmptyBraces: space, no_space
 Layout/SpaceInsideHashLiteralBraces:
   Exclude:
-    - 'spec/lib/grape_logging/loggers/filter_parameters_spec.rb'
-    - 'spec/lib/grape_logging/loggers/request_headers_spec.rb'
-    - 'spec/lib/grape_logging/loggers/response_spec.rb'
-    - 'spec/lib/grape_logging/middleware/request_logger_spec.rb'
+    - "spec/lib/grape_logging/loggers/filter_parameters_spec.rb"
+    - "spec/lib/grape_logging/loggers/request_headers_spec.rb"
+    - "spec/lib/grape_logging/loggers/response_spec.rb"
+    - "spec/lib/grape_logging/middleware/request_logger_spec.rb"
 
 # Offense count: 4
 # This cop supports safe autocorrection (--autocorrect).
@@ -181,34 +170,21 @@ Layout/SpaceInsideHashLiteralBraces:
 # SupportedStyles: final_newline, final_blank_line
 Layout/TrailingEmptyLines:
   Exclude:
-    - 'claude-scratchpad/cleaner_parameter_filter.rb'
-    - 'lib/grape_logging/multi_io.rb'
-    - 'lib/grape_logging/reporters/active_support_reporter.rb'
-    - 'lib/grape_logging/timings.rb'
-
-# Offense count: 11
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowInHeredoc.
-Layout/TrailingWhitespace:
-  Exclude:
-    - 'claude-scratchpad/cleaner_parameter_filter.rb'
+    - "lib/grape_logging/multi_io.rb"
+    - "lib/grape_logging/reporters/active_support_reporter.rb"
+    - "lib/grape_logging/timings.rb"
 
 # Offense count: 1
 # Configuration parameters: IgnoreLiteralBranches, IgnoreConstantBranches, IgnoreDuplicateElseBranch.
 Lint/DuplicateBranch:
   Exclude:
-    - 'lib/grape_logging/util/parameter_filter.rb'
-
-# Offense count: 6
-Lint/HashCompareByIdentity:
-  Exclude:
-    - 'claude-scratchpad/cleaner_parameter_filter.rb'
+    - "lib/grape_logging/util/parameter_filter.rb"
 
 # Offense count: 1
 # Configuration parameters: AllowedParentClasses.
 Lint/MissingSuper:
   Exclude:
-    - 'lib/grape_logging/loggers/filter_parameters.rb'
+    - "lib/grape_logging/loggers/filter_parameters.rb"
 
 # Offense count: 3
 # This cop supports safe autocorrection (--autocorrect).
@@ -216,7 +192,7 @@ Lint/MissingSuper:
 # SupportedStyles: strict, consistent
 Lint/SymbolConversion:
   Exclude:
-    - 'spec/lib/grape_logging/loggers/response_spec.rb'
+    - "spec/lib/grape_logging/loggers/response_spec.rb"
 
 # Offense count: 2
 # This cop supports safe autocorrection (--autocorrect).
@@ -224,19 +200,7 @@ Lint/SymbolConversion:
 # NotImplementedExceptions: NotImplementedError
 Lint/UnusedMethodArgument:
   Exclude:
-    - 'lib/grape_logging/loggers/base.rb'
-
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AutoCorrect.
-Lint/UselessAssignment:
-  Exclude:
-    - 'claude-scratchpad/cleaner_parameter_filter.rb'
-
-# Offense count: 1
-Lint/UselessConstantScoping:
-  Exclude:
-    - 'claude-scratchpad/cleaner_parameter_filter.rb'
+    - "lib/grape_logging/loggers/base.rb"
 
 # Offense count: 4
 # Configuration parameters: AllowedMethods, AllowedPatterns, CountRepeatedAttributes.
@@ -270,13 +234,13 @@ Metrics/PerceivedComplexity:
 # AllowedIdentifiers: TLS1_1, TLS1_2, capture3, iso8601, rfc1123_date, rfc822, rfc2822, rfc3339, x86_64
 Naming/VariableNumber:
   Exclude:
-    - 'spec/lib/grape_logging/formatters/rails_spec.rb'
+    - "spec/lib/grape_logging/formatters/rails_spec.rb"
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 Style/BlockComments:
   Exclude:
-    - 'spec/spec_helper.rb'
+    - "spec/spec_helper.rb"
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
@@ -287,16 +251,16 @@ Style/BlockComments:
 # AllowedMethods: lambda, proc, it
 Style/BlockDelimiters:
   Exclude:
-    - 'spec/lib/grape_logging/formatters/rails_spec.rb'
+    - "spec/lib/grape_logging/formatters/rails_spec.rb"
 
 # Offense count: 3
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: MinBranchesCount.
 Style/CaseLikeIf:
   Exclude:
-    - 'lib/grape_logging/formatters/default.rb'
-    - 'lib/grape_logging/formatters/logstash.rb'
-    - 'lib/grape_logging/formatters/rails.rb'
+    - "lib/grape_logging/formatters/default.rb"
+    - "lib/grape_logging/formatters/logstash.rb"
+    - "lib/grape_logging/formatters/rails.rb"
 
 # Offense count: 18
 # Configuration parameters: AllowedConstants.
@@ -307,7 +271,7 @@ Style/Documentation:
 # This cop supports safe autocorrection (--autocorrect).
 Style/ExpandPathArguments:
   Exclude:
-    - 'grape_logging.gemspec'
+    - "grape_logging.gemspec"
 
 # Offense count: 30
 # This cop supports unsafe autocorrection (--autocorrect-all).
@@ -320,14 +284,14 @@ Style/FrozenStringLiteralComment:
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Style/GlobalStdStream:
   Exclude:
-    - 'lib/grape_logging/reporters/logger_reporter.rb'
+    - "lib/grape_logging/reporters/logger_reporter.rb"
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: MinBodyLength, AllowConsecutiveConditionals.
 Style/GuardClause:
   Exclude:
-    - 'lib/grape_logging/reporters/logger_reporter.rb'
+    - "lib/grape_logging/reporters/logger_reporter.rb"
 
 # Offense count: 3
 # This cop supports safe autocorrection (--autocorrect).
@@ -336,14 +300,13 @@ Style/GuardClause:
 # SupportedShorthandSyntax: always, never, either, consistent, either_consistent
 Style/HashSyntax:
   Exclude:
-    - 'lib/grape_logging/formatters/logstash.rb'
+    - "lib/grape_logging/formatters/logstash.rb"
 
 # Offense count: 2
 # This cop supports safe autocorrection (--autocorrect).
 Style/IfUnlessModifier:
   Exclude:
-    - 'claude-scratchpad/cleaner_parameter_filter.rb'
-    - 'lib/grape_logging/reporters/logger_reporter.rb'
+    - "lib/grape_logging/reporters/logger_reporter.rb"
 
 # Offense count: 2
 # This cop supports safe autocorrection (--autocorrect).
@@ -351,8 +314,8 @@ Style/IfUnlessModifier:
 # SupportedStyles: line_count_dependent, lambda, literal
 Style/Lambda:
   Exclude:
-    - 'lib/grape_logging/util/parameter_filter.rb'
-    - 'spec/lib/grape_logging/loggers/filter_parameters_spec.rb'
+    - "lib/grape_logging/util/parameter_filter.rb"
+    - "spec/lib/grape_logging/loggers/filter_parameters_spec.rb"
 
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
@@ -360,13 +323,13 @@ Style/Lambda:
 # SupportedStyles: module_function, extend_self, forbidden
 Style/ModuleFunction:
   Exclude:
-    - 'lib/grape_logging/timings.rb'
+    - "lib/grape_logging/timings.rb"
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 Style/MultilineIfModifier:
   Exclude:
-    - 'lib/grape_logging/middleware/request_logger.rb'
+    - "lib/grape_logging/middleware/request_logger.rb"
 
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
@@ -374,15 +337,7 @@ Style/MultilineIfModifier:
 # SupportedStyles: literals, strict
 Style/MutableConstant:
   Exclude:
-    - 'lib/grape_logging/version.rb'
-
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle, MinBodyLength, AllowConsecutiveConditionals.
-# SupportedStyles: skip_modifier_ifs, always
-Style/Next:
-  Exclude:
-    - 'claude-scratchpad/cleaner_parameter_filter.rb'
+    - "lib/grape_logging/version.rb"
 
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
@@ -390,30 +345,30 @@ Style/Next:
 # SupportedStyles: predicate, comparison
 Style/NumericPredicate:
   Exclude:
-    - 'spec/**/*'
-    - 'lib/grape_logging/formatters/rails.rb'
+    - "spec/**/*"
+    - "lib/grape_logging/formatters/rails.rb"
 
 # Offense count: 10
 Style/OpenStructUse:
   Exclude:
-    - 'spec/lib/grape_logging/loggers/client_env_spec.rb'
-    - 'spec/lib/grape_logging/loggers/filter_parameters_spec.rb'
-    - 'spec/lib/grape_logging/loggers/request_headers_spec.rb'
-    - 'spec/lib/grape_logging/loggers/response_spec.rb'
+    - "spec/lib/grape_logging/loggers/client_env_spec.rb"
+    - "spec/lib/grape_logging/loggers/filter_parameters_spec.rb"
+    - "spec/lib/grape_logging/loggers/request_headers_spec.rb"
+    - "spec/lib/grape_logging/loggers/response_spec.rb"
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 Style/ParallelAssignment:
   Exclude:
-    - 'lib/grape_logging/util/parameter_filter.rb'
+    - "lib/grape_logging/util/parameter_filter.rb"
 
 # Offense count: 3
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: PreferredDelimiters.
 Style/PercentLiteralDelimiters:
   Exclude:
-    - 'grape_logging.gemspec'
-    - 'lib/grape_logging/loggers/filter_parameters.rb'
+    - "grape_logging.gemspec"
+    - "lib/grape_logging/loggers/filter_parameters.rb"
 
 # Offense count: 3
 # This cop supports safe autocorrection (--autocorrect).
@@ -421,19 +376,19 @@ Style/PercentLiteralDelimiters:
 # SupportedStyles: same_as_string_literals, single_quotes, double_quotes
 Style/QuotedSymbols:
   Exclude:
-    - 'spec/lib/grape_logging/loggers/response_spec.rb'
+    - "spec/lib/grape_logging/loggers/response_spec.rb"
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 Style/RedundantConstantBase:
   Exclude:
-    - 'lib/grape_logging/util/parameter_filter.rb'
+    - "lib/grape_logging/util/parameter_filter.rb"
 
 # Offense count: 2
 # This cop supports safe autocorrection (--autocorrect).
 Style/RedundantPercentQ:
   Exclude:
-    - 'grape_logging.gemspec'
+    - "grape_logging.gemspec"
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
@@ -441,7 +396,7 @@ Style/RedundantPercentQ:
 # SupportedStyles: implicit, explicit
 Style/RescueStandardError:
   Exclude:
-    - 'lib/grape_logging/loggers/response.rb'
+    - "lib/grape_logging/loggers/response.rb"
 
 # Offense count: 4
 # This cop supports unsafe autocorrection (--autocorrect-all).
@@ -449,14 +404,13 @@ Style/RescueStandardError:
 # AllowedMethods: present?, blank?, presence, try, try!
 Style/SafeNavigation:
   Exclude:
-    - 'claude-scratchpad/cleaner_parameter_filter.rb'
-    - 'lib/grape_logging/formatters/rails.rb'
+    - "lib/grape_logging/formatters/rails.rb"
 
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Style/SlicingWithRange:
   Exclude:
-    - 'lib/grape_logging/loggers/request_headers.rb'
+    - "lib/grape_logging/loggers/request_headers.rb"
 
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
@@ -464,16 +418,16 @@ Style/SlicingWithRange:
 # SupportedStyles: use_perl_names, use_english_names, use_builtin_english_names
 Style/SpecialGlobalVars:
   Exclude:
-    - 'spec/spec_helper.rb'
+    - "spec/spec_helper.rb"
 
 # Offense count: 3
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: Mode.
 Style/StringConcatenation:
   Exclude:
-    - 'lib/grape_logging/formatters/json.rb'
-    - 'lib/grape_logging/formatters/lograge.rb'
-    - 'lib/grape_logging/formatters/logstash.rb'
+    - "lib/grape_logging/formatters/json.rb"
+    - "lib/grape_logging/formatters/lograge.rb"
+    - "lib/grape_logging/formatters/logstash.rb"
 
 # Offense count: 33
 # This cop supports safe autocorrection (--autocorrect).
@@ -481,15 +435,15 @@ Style/StringConcatenation:
 # SupportedStyles: single_quotes, double_quotes
 Style/StringLiterals:
   Exclude:
-    - 'grape_logging.gemspec'
-    - 'lib/grape_logging/formatters/rails.rb'
-    - 'lib/grape_logging/loggers/client_env.rb'
-    - 'lib/grape_logging/util/parameter_filter.rb'
-    - 'spec/lib/grape_logging/formatters/rails_spec.rb'
-    - 'spec/lib/grape_logging/loggers/client_env_spec.rb'
-    - 'spec/lib/grape_logging/loggers/request_headers_spec.rb'
-    - 'spec/lib/grape_logging/loggers/response_spec.rb'
-    - 'spec/lib/grape_logging/middleware/request_logger_spec.rb'
+    - "grape_logging.gemspec"
+    - "lib/grape_logging/formatters/rails.rb"
+    - "lib/grape_logging/loggers/client_env.rb"
+    - "lib/grape_logging/util/parameter_filter.rb"
+    - "spec/lib/grape_logging/formatters/rails_spec.rb"
+    - "spec/lib/grape_logging/loggers/client_env_spec.rb"
+    - "spec/lib/grape_logging/loggers/request_headers_spec.rb"
+    - "spec/lib/grape_logging/loggers/response_spec.rb"
+    - "spec/lib/grape_logging/middleware/request_logger_spec.rb"
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
@@ -497,7 +451,7 @@ Style/StringLiterals:
 # SupportedStyles: single_quotes, double_quotes
 Style/StringLiteralsInInterpolation:
   Exclude:
-    - 'lib/grape_logging/formatters/rails.rb'
+    - "lib/grape_logging/formatters/rails.rb"
 
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
@@ -505,7 +459,7 @@ Style/StringLiteralsInInterpolation:
 # AllowedMethods: define_method
 Style/SymbolProc:
   Exclude:
-    - 'lib/grape_logging/util/parameter_filter.rb'
+    - "lib/grape_logging/util/parameter_filter.rb"
 
 # Offense count: 7
 # This cop supports safe autocorrection (--autocorrect).
@@ -513,14 +467,14 @@ Style/SymbolProc:
 # SupportedStylesForMultiline: comma, consistent_comma, diff_comma, no_comma
 Style/TrailingCommaInHashLiteral:
   Exclude:
-    - 'spec/lib/grape_logging/loggers/filter_parameters_spec.rb'
-    - 'spec/lib/grape_logging/loggers/response_spec.rb'
+    - "spec/lib/grape_logging/loggers/filter_parameters_spec.rb"
+    - "spec/lib/grape_logging/loggers/response_spec.rb"
 
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Style/ZeroLengthPredicate:
   Exclude:
-    - 'lib/grape_logging/formatters/rails.rb'
+    - "lib/grape_logging/formatters/rails.rb"
 
 # Offense count: 3
 # This cop supports safe autocorrection (--autocorrect).
