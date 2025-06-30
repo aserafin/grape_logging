@@ -3,7 +3,6 @@ require 'grape'
 module GrapeLogging
   module Middleware
     class RequestLogger < Grape::Middleware::Base
-
       ActiveSupport::Notifications.subscribe('sql.active_record') do |*args|
         event = ActiveSupport::Notifications::Event.new(*args)
         GrapeLogging::Timings.append_db_runtime(event)

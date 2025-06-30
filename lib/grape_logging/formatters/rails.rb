@@ -3,7 +3,6 @@ require 'rack/utils'
 module GrapeLogging
   module Formatters
     class Rails
-
       def call(severity, datetime, _, data)
         if data.is_a?(String)
           "#{severity[0..0]} [#{datetime}] #{severity} -- : #{data}\n"
@@ -53,7 +52,6 @@ module GrapeLogging
 
         message
       end
-
     end
   end
 end
