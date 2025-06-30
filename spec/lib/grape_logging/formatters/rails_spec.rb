@@ -80,5 +80,4 @@ describe GrapeLogging::Formatters::Rails do
       end
     end
   end
-
 end
