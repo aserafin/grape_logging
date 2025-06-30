@@ -30,8 +30,8 @@ module GrapeLogging
 
       def clean_parameters(parameters)
         original_encoding_map = build_encoding_map(parameters)
-        params = transform_key_encoding(parameters, Hash.new{ |h, _| [Encoding::ASCII_8BIT, h] })
-        cleaned_params = parameter_filter.filter(params).reject{ |key, _value| @exceptions.include?(key) }
+        params = transform_key_encoding(parameters, Hash.new { |h, _| [Encoding::ASCII_8BIT, h] })
+        cleaned_params = parameter_filter.filter(params).reject { |key, _value| @exceptions.include?(key) }
         transform_key_encoding(cleaned_params, original_encoding_map)
       end
 

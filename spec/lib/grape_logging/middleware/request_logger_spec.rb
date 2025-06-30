@@ -3,7 +3,7 @@ require 'rack'
 
 describe GrapeLogging::Middleware::RequestLogger do
   let(:subject) { request.send(request_method, path) }
-  let(:app) { proc{ [status, {} , ['response body']] } }
+  let(:app) { proc { [status, {} , ['response body']] } }
   let(:stack) { described_class.new app, options }
   let(:request) { Rack::MockRequest.new(stack) }
   let(:options) { {include: [], logger: logger} }
@@ -49,7 +49,7 @@ describe GrapeLogging::Middleware::RequestLogger do
   end
 
   context 'with a nil response' do
-    let(:app) { proc{ [500, {} , nil] } }
+    let(:app) { proc { [500, {} , nil] } }
     it 'should log "fail" instead of a status' do
       expect(Rack::MockResponse).to receive(:new) { nil }
       expect(logger).to receive('info') do |arguments|
