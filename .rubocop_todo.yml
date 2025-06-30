@@ -29,12 +29,6 @@ Gemspec/RequiredRubyVersion:
   Exclude:
     - 'grape_logging.gemspec'
 
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-Layout/SpaceBeforeComma:
-  Exclude:
-    - 'spec/lib/grape_logging/middleware/request_logger_spec.rb'
-
 # Offense count: 4
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces, SpaceBeforeBlockParameters.
