@@ -6,13 +6,13 @@ describe GrapeLogging::Loggers::FilterParameters do
 
   let(:mock_request) do
     OpenStruct.new(params: {
-      'this_one' => 'this one',
-      'that_one' => 'one',
-      'two' => 'two',
-      'three' => 'three',
-      'four' => 'four',
-      "\xff" => 'invalid utf8',
-    })
+                     'this_one' => 'this one',
+                     'that_one' => 'one',
+                     'two' => 'two',
+                     'three' => 'three',
+                     'four' => 'four',
+                     "\xff" => 'invalid utf8',
+                   })
   end
 
   let(:mock_request_with_deep_nesting) do
@@ -35,37 +35,37 @@ describe GrapeLogging::Loggers::FilterParameters do
   shared_examples 'filtering' do
     it 'filters out sensitive parameters' do
       expect(subject.parameters(mock_request, nil)).to eq(params: {
-        'this_one' => subject.instance_variable_get('@replacement'),
-        'that_one' => subject.instance_variable_get('@replacement'),
-        'two' => 'two',
-        'three' => 'three',
-        'four' => subject.instance_variable_get('@replacement'),
-        "\xff" => 'invalid utf8',
-      })
+                                                            'this_one' => subject.instance_variable_get('@replacement'),
+                                                            'that_one' => subject.instance_variable_get('@replacement'),
+                                                            'two' => 'two',
+                                                            'three' => 'three',
+                                                            'four' => subject.instance_variable_get('@replacement'),
+                                                            "\xff" => 'invalid utf8',
+                                                          })
     end
 
     it 'deeply filters out sensitive parameters' do
       expect(subject.parameters(mock_request_with_deep_nesting, nil)).to eq(params: {
-        'this_one' => subject.instance_variable_get('@replacement'),
-        'that_one' => subject.instance_variable_get('@replacement'),
-        'two' => 'two',
-        'three' => 'three',
-        'four' => subject.instance_variable_get('@replacement'),
-        "\xff" => 'invalid utf8',
-        'five' => {
-          'this_one' => subject.instance_variable_get('@replacement'),
-          'that_one' => subject.instance_variable_get('@replacement'),
-          'two' => 'two',
-          'three' => 'three',
-          'four' => subject.instance_variable_get('@replacement'),
-          "\xff" => 'invalid utf8',
-          'six' => {
-            'seven' => 'seven',
-            'eight' => 'eight',
-            'one' => subject.instance_variable_get('@replacement'),
-          },
-        },
-      })
+                                                                              'this_one' => subject.instance_variable_get('@replacement'),
+                                                                              'that_one' => subject.instance_variable_get('@replacement'),
+                                                                              'two' => 'two',
+                                                                              'three' => 'three',
+                                                                              'four' => subject.instance_variable_get('@replacement'),
+                                                                              "\xff" => 'invalid utf8',
+                                                                              'five' => {
+                                                                                'this_one' => subject.instance_variable_get('@replacement'),
+                                                                                'that_one' => subject.instance_variable_get('@replacement'),
+                                                                                'two' => 'two',
+                                                                                'three' => 'three',
+                                                                                'four' => subject.instance_variable_get('@replacement'),
+                                                                                "\xff" => 'invalid utf8',
+                                                                                'six' => {
+                                                                                  'seven' => 'seven',
+                                                                                  'eight' => 'eight',
+                                                                                  'one' => subject.instance_variable_get('@replacement'),
+                                                                                },
+                                                                              },
+                                                                            })
     end
   end
 

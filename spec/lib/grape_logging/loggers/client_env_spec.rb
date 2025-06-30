@@ -10,8 +10,8 @@ describe GrapeLogging::Loggers::ClientEnv do
   context 'forwarded for' do
     let(:mock_request) do
       OpenStruct.new(env: {
-        "HTTP_X_FORWARDED_FOR" => forwarded_for
-      })
+                       "HTTP_X_FORWARDED_FOR" => forwarded_for
+                     })
     end
 
     it 'sets the ip key' do
@@ -27,8 +27,8 @@ describe GrapeLogging::Loggers::ClientEnv do
   context 'remote address' do
     let(:mock_request) do
       OpenStruct.new(env: {
-        "REMOTE_ADDR" => remote_addr
-      })
+                       "REMOTE_ADDR" => remote_addr
+                     })
     end
 
     it 'sets the ip key' do
@@ -39,8 +39,8 @@ describe GrapeLogging::Loggers::ClientEnv do
   context 'user agent' do
     let(:mock_request) do
       OpenStruct.new(env: {
-        "HTTP_USER_AGENT" => user_agent
-      })
+                       "HTTP_USER_AGENT" => user_agent
+                     })
     end
 
     it 'sets the ua key' do
