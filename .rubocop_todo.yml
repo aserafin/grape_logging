@@ -37,14 +37,6 @@ Layout/CaseIndentation:
   Exclude:
     - 'claude-scratchpad/cleaner_parameter_filter.rb'
 
-# Offense count: 4
-# This cop supports safe autocorrection (--autocorrect).
-Layout/ElseAlignment:
-  Exclude:
-    - 'claude-scratchpad/cleaner_parameter_filter.rb'
-    - 'lib/grape_logging/middleware/request_logger.rb'
-    - 'spec/lib/grape_logging/formatters/rails_spec.rb'
-
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 Layout/EmptyLines:

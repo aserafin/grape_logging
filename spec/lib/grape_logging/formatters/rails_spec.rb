@@ -64,7 +64,7 @@ describe GrapeLogging::Formatters::Rails do
 
         expected_output = if RUBY_VERSION >= '3.4'
           '  Parameters: {"some_param" => {value_1: "123", value_2: "456"}}'
-        else
+                          else
           '  Parameters: {"some_param"=>{:value_1=>"123", :value_2=>"456"}}'
         end
         expect(lines.first).to eq expected_output
