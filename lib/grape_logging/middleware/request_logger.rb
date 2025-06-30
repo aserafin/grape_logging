@@ -17,9 +17,9 @@ module GrapeLogging
 
         @included_loggers = @options[:include] || []
         @reporter = if options[:instrumentation_key]
-          Reporters::ActiveSupportReporter.new(@options[:instrumentation_key])
+                      Reporters::ActiveSupportReporter.new(@options[:instrumentation_key])
                     else
-          Reporters::LoggerReporter.new(@options[:logger], @options[:formatter], @options[:log_level])
+                      Reporters::LoggerReporter.new(@options[:logger], @options[:formatter], @options[:log_level])
                     end
       end
 

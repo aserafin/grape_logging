@@ -29,14 +29,6 @@ Gemspec/RequiredRubyVersion:
   Exclude:
     - 'grape_logging.gemspec'
 
-# Offense count: 4
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: Width, AllowedPatterns.
-Layout/IndentationWidth:
-  Exclude:
-    - 'lib/grape_logging/middleware/request_logger.rb'
-    - 'spec/lib/grape_logging/formatters/rails_spec.rb'
-
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AllowForAlignment, EnforcedStyleForExponentOperator, EnforcedStyleForRationalLiterals.

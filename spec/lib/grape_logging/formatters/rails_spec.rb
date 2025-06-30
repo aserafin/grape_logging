@@ -63,9 +63,9 @@ describe GrapeLogging::Formatters::Rails do
         lines = message.split("\n")
 
         expected_output = if RUBY_VERSION >= '3.4'
-          '  Parameters: {"some_param" => {value_1: "123", value_2: "456"}}'
+                            '  Parameters: {"some_param" => {value_1: "123", value_2: "456"}}'
                           else
-          '  Parameters: {"some_param"=>{:value_1=>"123", :value_2=>"456"}}'
+                            '  Parameters: {"some_param"=>{:value_1=>"123", :value_2=>"456"}}'
                           end
         expect(lines.first).to eq expected_output
         expect(lines.last).to eq "Completed 200 OK in 272.4ms (Views: 231.77ms | DB: 40.63ms)"
