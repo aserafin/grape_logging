@@ -23,7 +23,7 @@ module GrapeLogging
         [
           "#{exception.message} (#{exception.class})",
           backtrace_array.join("\n")
-        ].reject {|line| line == ""}.join("\n")
+        ].reject { |line| line == "" }.join("\n")
       end
 
       def format_hash(hash)
