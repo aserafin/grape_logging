@@ -32,5 +32,5 @@ jobs:
           bundler-cache: true
       - name: Install dependencies
         run: bundle install
-      - name: Run tests
+      - name: Run RuboCop
         run: bundle exec rake rubocop
