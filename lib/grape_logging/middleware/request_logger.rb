@@ -14,7 +14,7 @@ module GrapeLogging
       attr_accessor :response_status, :response_body
 
       def initialize(app, options = {})
-        super
+        super(app, **options)
 
         @included_loggers = @options[:include] || []
         @reporter = if options[:instrumentation_key]
