@@ -20,7 +20,7 @@ module GrapeLogging
           Reporters::ActiveSupportReporter.new(@options[:instrumentation_key])
                     else
           Reporters::LoggerReporter.new(@options[:logger], @options[:formatter], @options[:log_level])
-        end
+                    end
       end
 
       def before
