@@ -6,7 +6,7 @@ describe GrapeLogging::Middleware::RequestLogger do
   let(:app) { proc { [status, {}, ['response body']] } }
   let(:stack) { described_class.new app, options }
   let(:request) { Rack::MockRequest.new(stack) }
-  let(:options) { {include: [], logger: logger} }
+  let(:options) { { include: [], logger: logger } }
   let(:logger) { double('logger') }
   let(:path) { '/' }
   let(:request_method) { 'get' }

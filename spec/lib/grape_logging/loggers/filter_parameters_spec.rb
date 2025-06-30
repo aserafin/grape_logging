@@ -20,7 +20,7 @@ describe GrapeLogging::Loggers::FilterParameters do
     OpenStruct.new(
       params: deep_clone.call.merge(
         'five' => deep_clone.call.merge(
-          deep_clone.call.merge({'six' => {'seven' => 'seven', 'eight' => 'eight', 'one' => 'another one'}})
+          deep_clone.call.merge({ 'six' => { 'seven' => 'seven', 'eight' => 'eight', 'one' => 'another one' } })
         )
       )
     )

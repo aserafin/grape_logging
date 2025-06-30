@@ -4,7 +4,7 @@ require 'ostruct'
 describe GrapeLogging::Loggers::Response do
   context 'with a parseable JSON body' do
     let(:response) do
-      OpenStruct.new(body: [{"one": "two", "three": {"four": 5}}])
+      OpenStruct.new(body: [{ "one": "two", "three": { "four": 5 } }])
     end
 
     it 'returns an array of parsed JSON objects' do
