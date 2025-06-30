@@ -9,14 +9,14 @@ describe GrapeLogging::Loggers::RequestHeaders do
   let(:mock_request_with_unhandled_headers) do
     OpenStruct.new(env: {
                      HTTP_REFERER: 'http://example.com',
-      "PATH_INFO"=>"/api/v1/users"
+                     "PATH_INFO" => "/api/v1/users"
                    })
   end
 
   let(:mock_request_with_long_headers) do
     OpenStruct.new(env: {
                      HTTP_REFERER: 'http://example.com',
-      HTTP_USER_AGENT: "Mozilla/5.0"
+                     HTTP_USER_AGENT: "Mozilla/5.0"
                    })
   end
 
