@@ -202,12 +202,6 @@ Style/OpenStructUse:
     - 'spec/lib/grape_logging/loggers/request_headers_spec.rb'
     - 'spec/lib/grape_logging/loggers/response_spec.rb'
 
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-Style/ParallelAssignment:
-  Exclude:
-    - 'lib/grape_logging/util/parameter_filter.rb'
-
 # Offense count: 3
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: ConvertCodeThatCanStartToReturnNil, AllowedMethods, MaxChainLength.

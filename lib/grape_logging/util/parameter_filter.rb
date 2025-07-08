@@ -39,7 +39,9 @@ else
       def self.compile(replacement, filters)
         return lambda { |params| params.dup } if filters.empty?
 
-        strings, regexps, blocks = [], [], []
+        strings = []
+        regexps = []
+        blocks = []
 
         filters.each do |item|
           case item
