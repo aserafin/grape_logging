@@ -6,7 +6,7 @@ if defined?(::Rails.application)
       end
     end
   else
-    require "active_support/parameter_filter"
+    require 'active_support/parameter_filter'
 
     class ParameterFilter < ActiveSupport::ParameterFilter
       def initialize(_replacement, filter_parameters)
@@ -52,8 +52,8 @@ else
           end
         end
 
-        deep_regexps, regexps = regexps.partition { |r| r.to_s.include?("\\.".freeze) }
-        deep_strings, strings = strings.partition { |s| s.include?("\\.".freeze) }
+        deep_regexps, regexps = regexps.partition { |r| r.to_s.include?('\\.'.freeze) }
+        deep_strings, strings = strings.partition { |s| s.include?('\\.'.freeze) }
 
         regexps << Regexp.new(strings.join('|'.freeze), true) unless strings.empty?
         deep_regexps << Regexp.new(deep_strings.join('|'.freeze), true) unless deep_strings.empty?

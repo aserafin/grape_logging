@@ -275,22 +275,6 @@ Style/StringConcatenation:
     - 'lib/grape_logging/formatters/lograge.rb'
     - 'lib/grape_logging/formatters/logstash.rb'
 
-# Offense count: 33
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.
-# SupportedStyles: single_quotes, double_quotes
-Style/StringLiterals:
-  Exclude:
-    - 'grape_logging.gemspec'
-    - 'lib/grape_logging/formatters/rails.rb'
-    - 'lib/grape_logging/loggers/client_env.rb'
-    - 'lib/grape_logging/util/parameter_filter.rb'
-    - 'spec/lib/grape_logging/formatters/rails_spec.rb'
-    - 'spec/lib/grape_logging/loggers/client_env_spec.rb'
-    - 'spec/lib/grape_logging/loggers/request_headers_spec.rb'
-    - 'spec/lib/grape_logging/loggers/response_spec.rb'
-    - 'spec/lib/grape_logging/middleware/request_logger_spec.rb'
-
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: AllowMethodsWithArguments, AllowedMethods, AllowedPatterns, AllowComments.

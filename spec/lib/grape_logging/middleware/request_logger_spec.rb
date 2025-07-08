@@ -64,7 +64,7 @@ describe GrapeLogging::Middleware::RequestLogger do
       options[:include] << GrapeLogging::Loggers::RequestHeaders.new
       options[:include] << GrapeLogging::Loggers::ClientEnv.new
       options[:include] << GrapeLogging::Loggers::Response.new
-      options[:include] << GrapeLogging::Loggers::FilterParameters.new(["replace_me"])
+      options[:include] << GrapeLogging::Loggers::FilterParameters.new(['replace_me'])
     end
 
     %w[get put post delete options head patch].each do |the_method|
@@ -84,9 +84,9 @@ describe GrapeLogging::Middleware::RequestLogger do
     it 'should filter parameters in the log' do
       expect(logger).to receive('info') do |arguments|
         expect(arguments[:params]).to eq(
-          "replace_me" => '[FILTERED]',
-          "replace_me_too" => '[FILTERED]',
-          "cant_touch_this" => 'should see'
+          'replace_me' => '[FILTERED]',
+          'replace_me_too' => '[FILTERED]',
+          'cant_touch_this' => 'should see'
         )
       end
       parameters = {
