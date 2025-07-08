@@ -292,14 +292,6 @@ Style/StringLiterals:
     - 'spec/lib/grape_logging/middleware/request_logger_spec.rb'
 
 # Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: single_quotes, double_quotes
-Style/StringLiteralsInInterpolation:
-  Exclude:
-    - 'lib/grape_logging/formatters/rails.rb'
-
-# Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: AllowMethodsWithArguments, AllowedMethods, AllowedPatterns, AllowComments.
 # AllowedMethods: define_method

@@ -46,7 +46,7 @@ module GrapeLogging
         message << "  Parameters: #{params.inspect}\n" if params
 
         message << "Completed #{status} #{::Rack::Utils::HTTP_STATUS_CODES[status]} in #{total_time}ms"
-        message << " (#{additions.join(" | ".freeze)})" unless additions.empty?
+        message << " (#{additions.join(' | '.freeze)})" unless additions.empty?
         message << "\n"
         message << "\n" if defined?(::Rails.env) && ::Rails.env.development?
 
