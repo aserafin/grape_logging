@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ['aserafin']
   spec.email         = ['adrian@softmad.pl']
 
-  spec.summary       = %q{Out of the box request logging for Grape!}
-  spec.description   = %q{This gem provides simple request logging for Grape with just few lines of code you have to put in your project! In return you will get response codes, paths, parameters and more!}
+  spec.summary       = 'Out of the box request logging for Grape!'
+  spec.description   = 'This gem provides simple request logging for Grape with just few lines of code you have to put in your project! In return you will get response codes, paths, parameters and more!'
   spec.homepage      = 'http://github.com/aserafin/grape_logging'
   spec.license       = 'MIT'
 

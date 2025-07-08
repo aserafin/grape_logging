@@ -230,12 +230,6 @@ Style/RedundantConstantBase:
   Exclude:
     - 'lib/grape_logging/util/parameter_filter.rb'
 
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-Style/RedundantPercentQ:
-  Exclude:
-    - 'grape_logging.gemspec'
-
 # Offense count: 3
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: ConvertCodeThatCanStartToReturnNil, AllowedMethods, MaxChainLength.
