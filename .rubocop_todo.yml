@@ -122,12 +122,6 @@ Style/CaseLikeIf:
 Style/Documentation:
   Enabled: false
 
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-Style/ExpandPathArguments:
-  Exclude:
-    - 'grape_logging.gemspec'
-
 # Offense count: 29
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: EnforcedStyle.
