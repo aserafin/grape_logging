@@ -1,4 +1,4 @@
-if defined?(::Rails.application)
+if defined?(Rails.application)
   if Gem::Version.new(Rails.version) < Gem::Version.new('6.0.0')
     class ParameterFilter < ActionDispatch::Http::ParameterFilter
       def initialize(_replacement, filter_parameters)
