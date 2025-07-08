@@ -307,15 +307,6 @@ Style/SymbolProc:
   Exclude:
     - 'lib/grape_logging/util/parameter_filter.rb'
 
-# Offense count: 7
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyleForMultiline.
-# SupportedStylesForMultiline: comma, consistent_comma, diff_comma, no_comma
-Style/TrailingCommaInHashLiteral:
-  Exclude:
-    - 'spec/lib/grape_logging/loggers/filter_parameters_spec.rb'
-    - 'spec/lib/grape_logging/loggers/response_spec.rb'
-
 # Offense count: 10
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AllowHeredoc, AllowURI, AllowQualifiedName, URISchemes, IgnoreCopDirectives, AllowedPatterns, SplitStrings.

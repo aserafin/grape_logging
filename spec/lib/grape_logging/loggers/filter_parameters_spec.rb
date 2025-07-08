@@ -11,7 +11,7 @@ describe GrapeLogging::Loggers::FilterParameters do
                      'two' => 'two',
                      'three' => 'three',
                      'four' => 'four',
-                     "\xff" => 'invalid utf8',
+                     "\xff" => 'invalid utf8'
                    })
   end
 
@@ -40,7 +40,7 @@ describe GrapeLogging::Loggers::FilterParameters do
                                                             'two' => 'two',
                                                             'three' => 'three',
                                                             'four' => subject.instance_variable_get('@replacement'),
-                                                            "\xff" => 'invalid utf8',
+                                                            "\xff" => 'invalid utf8'
                                                           })
     end
 
@@ -62,9 +62,9 @@ describe GrapeLogging::Loggers::FilterParameters do
                                                                                 'six' => {
                                                                                   'seven' => 'seven',
                                                                                   'eight' => 'eight',
-                                                                                  'one' => subject.instance_variable_get('@replacement'),
-                                                                                },
-                                                                              },
+                                                                                  'one' => subject.instance_variable_get('@replacement')
+                                                                                }
+                                                                              }
                                                                             })
     end
   end
