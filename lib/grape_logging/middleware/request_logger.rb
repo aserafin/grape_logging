@@ -3,10 +3,12 @@ require 'grape'
 module GrapeLogging
   module Middleware
     class RequestLogger < Grape::Middleware::Base
-      ActiveSupport::Notifications.subscribe('sql.active_record') do |*args|
-        event = ActiveSupport::Notifications::Event.new(*args)
-        GrapeLogging::Timings.append_db_runtime(event)
-      end if defined?(ActiveRecord)
+      if defined?(ActiveRecord)
+        ActiveSupport::Notifications.subscribe('sql.active_record') do |*args|
+          event = ActiveSupport::Notifications::Event.new(*args)
+          GrapeLogging::Timings.append_db_runtime(event)
+        end
+      end
 
       # Persist response status & response (body)
       # to use int in parameters

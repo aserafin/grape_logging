@@ -181,12 +181,6 @@ Style/ModuleFunction:
     - 'lib/grape_logging/timings.rb'
 
 # Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-Style/MultilineIfModifier:
-  Exclude:
-    - 'lib/grape_logging/middleware/request_logger.rb'
-
-# Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: literals, strict
