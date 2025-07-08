@@ -209,14 +209,6 @@ Style/ParallelAssignment:
     - 'lib/grape_logging/util/parameter_filter.rb'
 
 # Offense count: 3
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: PreferredDelimiters.
-Style/PercentLiteralDelimiters:
-  Exclude:
-    - 'grape_logging.gemspec'
-    - 'lib/grape_logging/loggers/filter_parameters.rb'
-
-# Offense count: 3
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: ConvertCodeThatCanStartToReturnNil, AllowedMethods, MaxChainLength.
 # AllowedMethods: present?, blank?, presence, try, try!
