@@ -16,7 +16,7 @@ describe GrapeLogging::Loggers::FilterParameters do
   end
 
   let(:mock_request_with_deep_nesting) do
-    deep_clone = lambda { Marshal.load Marshal.dump mock_request.params }
+    deep_clone = -> { Marshal.load Marshal.dump mock_request.params }
     OpenStruct.new(
       params: deep_clone.call.merge(
         'five' => deep_clone.call.merge(

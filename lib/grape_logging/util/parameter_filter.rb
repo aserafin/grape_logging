@@ -37,7 +37,7 @@ else
 
     class CompiledFilter # :nodoc:
       def self.compile(replacement, filters)
-        return lambda { |params| params.dup } if filters.empty?
+        return ->(params) { params.dup } if filters.empty?
 
         strings = []
         regexps = []
