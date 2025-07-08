@@ -15,7 +15,7 @@ module GrapeLogging
           # Rack responses
           begin
             response.body.map { |body| JSON.parse(body.to_s) }
-          rescue # No reason to have "=> e" here when we don't use it..
+          rescue StandardError # No reason to have "=> e" here when we don't use it..
             response.body
           end
         else

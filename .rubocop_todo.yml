@@ -236,14 +236,6 @@ Style/RedundantPercentQ:
   Exclude:
     - 'grape_logging.gemspec'
 
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: implicit, explicit
-Style/RescueStandardError:
-  Exclude:
-    - 'lib/grape_logging/loggers/response.rb'
-
 # Offense count: 3
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: ConvertCodeThatCanStartToReturnNil, AllowedMethods, MaxChainLength.
