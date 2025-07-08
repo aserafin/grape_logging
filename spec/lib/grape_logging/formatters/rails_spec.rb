@@ -6,7 +6,7 @@ describe GrapeLogging::Formatters::Rails do
   let(:datetime) { Time.new('2018', '03', '02', '10', '35', '04', '+13:00') }
 
   let(:exception_data) { ArgumentError.new('Message') }
-  let(:hash_data) {
+  let(:hash_data) do
     {
       status: 200,
       time: {
@@ -18,7 +18,7 @@ describe GrapeLogging::Formatters::Rails do
       path: '/api/endpoint',
       host: 'localhost'
     }
-  }
+  end
 
   describe '#call' do
     context 'string data' do
