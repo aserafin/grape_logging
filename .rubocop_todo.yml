@@ -142,13 +142,6 @@ Style/GlobalStdStream:
     - 'lib/grape_logging/reporters/logger_reporter.rb'
 
 # Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: MinBodyLength, AllowConsecutiveConditionals.
-Style/GuardClause:
-  Exclude:
-    - 'lib/grape_logging/reporters/logger_reporter.rb'
-
-# Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: EnforcedStyle, Autocorrect.
 # SupportedStyles: module_function, extend_self, forbidden
