@@ -158,12 +158,6 @@ Style/HashSyntax:
     - 'lib/grape_logging/formatters/logstash.rb'
 
 # Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-Style/IfUnlessModifier:
-  Exclude:
-    - 'lib/grape_logging/reporters/logger_reporter.rb'
-
-# Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: EnforcedStyle, Autocorrect.
 # SupportedStyles: module_function, extend_self, forbidden
