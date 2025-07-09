@@ -1,6 +1,13 @@
 # Changelog
 
-## [2.0.0] - 2025-06-28
+## [2.0.1] - Unreleased
+
+### Changed or Fixed or Added
+* Your contribution here.
+
+[2.0.1]: https://github.com/aserafin/grape_logging/compare/v2.0.0...master
+
+## [2.0.0] - 2025-07-09
 
 ### Changed
 - **BREAKING**: Updated to support Grape 2.1 and Rack 3.1
