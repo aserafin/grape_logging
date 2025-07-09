@@ -41,7 +41,7 @@ Commit your changes.
 ```shell
 git add CHANGELOG.md lib/grape_logging/version.rb
 git commit -m "Preparing for release, 1.8.5."
-git push github master
+git push
 ```
 
 ### Release on RubyGems and GitHub
@@ -107,5 +107,5 @@ Commit your changes.
 ```
 git add CHANGELOG.md lib/grape_logging/version.rb
 git commit -m "Bump version to 1.8.6."
-git push github master
+git push
 ```
