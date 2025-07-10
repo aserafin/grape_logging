@@ -37,14 +37,16 @@ module GrapeLogging
 
       def build_encoding_map(parameters)
         parameters.each_with_object({}) do |(k, v), h|
-          h[k.dup.force_encoding(Encoding::ASCII_8BIT)] = [k.encoding, v.is_a?(Hash) ? build_encoding_map(v) : nil]
+          key_str = k.to_s
+          h[key_str.dup.force_encoding(Encoding::ASCII_8BIT)] = [key_str.encoding, v.is_a?(Hash) ? build_encoding_map(v) : nil]
         end
       end
 
       def transform_key_encoding(parameters, encoding_map)
         parameters.each_with_object({}) do |(k, v), h|
-          encoding, children_encoding_map = encoding_map[k]
-          h[k.dup.force_encoding(encoding)] = v.is_a?(Hash) ? transform_key_encoding(v, children_encoding_map) : v
+          key_str = k.to_s
+          encoding, children_encoding_map = encoding_map[key_str]
+          h[key_str.dup.force_encoding(encoding)] = v.is_a?(Hash) ? transform_key_encoding(v, children_encoding_map) : v
         end
       end
     end
