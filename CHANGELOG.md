@@ -1,15 +1,15 @@
 # Changelog
 
-## [2.1.1] - Unreleased
+## [2.1.1] - 2025-07-09
 
-## Added or Changed or Fixed
-- Your contribution here.
+### Fixed
+- [#92](https://github.com/aserafin/grape_logging/pull/92) Handle symbol param keys during filtering - [@samsonjs](https://github.com/samsonjs).
 
-[2.1.1]: https://github.com/aserafin/grape_logging/compare/v2.1.0...master
+[2.1.1]: https://github.com/aserafin/grape_logging/compare/v2.1.0...v2.1.1
 
 ## [2.1.0] - 2025-07-09
 
-## Added
+### Added
 - [#91](https://github.com/aserafin/grape_logging/pull/91) Add ActionDispatch request ID to logger arguments hash as `:request_id` - [@samsonjs](https://github.com/samsonjs).
 
 [2.1.0]: https://github.com/aserafin/grape_logging/compare/v2.0.0...v2.1.0
