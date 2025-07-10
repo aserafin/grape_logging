@@ -98,7 +98,8 @@ module GrapeLogging
           method: request.request_method,
           path: request.path,
           params: request.params,
-          host: request.host
+          host: request.host,
+          request_id: env['action_dispatch.request_id'],
         }
       end
 

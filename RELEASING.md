@@ -99,7 +99,7 @@ Add the next release to [CHANGELOG.md](https://github.com/aserafin/grape_logging
 ## [Next Release]
 
 ### Changed or Fixed or Added
-* Your contribution here.
+- Your contribution here.
 ```
 
 Commit your changes.
