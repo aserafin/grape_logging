@@ -23,5 +23,8 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'rake', '~> 13.3'
   spec.add_development_dependency 'rspec', '~> 3.5'
-  spec.add_development_dependency 'rubocop'
+
+  # This is pinned to an exact version otherwise we can't know which rules
+  # are in play at any given time in different environments.
+  spec.add_development_dependency 'rubocop', '1.77.0'
 end
