@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.2] - Unreleased
+
+### Changed or Fixed or Added
+- Your contribution here.
+
+[2.1.2]: https://github.com/aserafin/grape_logging/compare/v2.1.1...master
+
 ## [2.1.1] - 2025-07-09
 
 ### Fixed
