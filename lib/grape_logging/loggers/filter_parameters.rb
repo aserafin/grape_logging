@@ -3,7 +3,7 @@ module GrapeLogging
     class FilterParameters < GrapeLogging::Loggers::Base
       AD_PARAMS = 'action_dispatch.request.parameters'.freeze
 
-      def initialize(filter_parameters = nil, replacement = nil, exceptions = %w(controller action format))
+      def initialize(filter_parameters = nil, replacement = nil, exceptions = %w[controller action format])
         @filter_parameters = filter_parameters || (defined?(::Rails.application) ? ::Rails.application.config.filter_parameters : [])
         @replacement = replacement || '[FILTERED]'
         @exceptions = exceptions
@@ -30,8 +30,8 @@ module GrapeLogging
 
       def clean_parameters(parameters)
         original_encoding_map = build_encoding_map(parameters)
-        params = transform_key_encoding(parameters, Hash.new{ |h, _| [Encoding::ASCII_8BIT, h] })
-        cleaned_params = parameter_filter.filter(params).reject{ |key, _value| @exceptions.include?(key) }
+        params = transform_key_encoding(parameters, Hash.new { |h, _| [Encoding::ASCII_8BIT, h] })
+        cleaned_params = parameter_filter.filter(params).reject { |key, _value| @exceptions.include?(key) }
         transform_key_encoding(cleaned_params, original_encoding_map)
       end
 
