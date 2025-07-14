@@ -1,20 +1,18 @@
 module GrapeLogging
   module Timings
-    module_function
-
-    def db_runtime=(value)
+    def self.db_runtime=(value)
       Thread.current[:grape_db_runtime] = value
     end
 
-    def db_runtime
+    def self.db_runtime
       Thread.current[:grape_db_runtime] ||= 0
     end
 
-    def reset_db_runtime
+    def self.reset_db_runtime
       self.db_runtime = 0
     end
 
-    def append_db_runtime(event)
+    def self.append_db_runtime(event)
       self.db_runtime += event.duration
     end
   end

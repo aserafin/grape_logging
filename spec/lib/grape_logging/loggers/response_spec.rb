@@ -8,9 +8,7 @@ describe GrapeLogging::Loggers::Response do
     end
 
     it 'returns an array of parsed JSON objects' do
-      expect(subject.parameters(nil, response)).to eq({
-                                                        response: [response.body.first]
-                                                      })
+      expect(subject.parameters(nil, response)).to eq({ response: [response.body.first] })
     end
   end
 
@@ -20,9 +18,7 @@ describe GrapeLogging::Loggers::Response do
     end
 
     it 'just returns the body' do
-      expect(subject.parameters(nil, response)).to eq({
-                                                        response: response.body
-                                                      })
+      expect(subject.parameters(nil, response)).to eq({ response: response.body })
     end
   end
 end
