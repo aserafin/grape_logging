@@ -2,7 +2,8 @@ require 'spec_helper'
 require 'rack'
 
 describe GrapeLogging::Middleware::RequestLogger do
-  let(:subject) { request.send(request_method, path) }
+  let(:env) { { 'action_dispatch.request_id' => 'request-abc123' } }
+  let(:subject) { request.send(request_method, path, env) }
   let(:app) { proc { [status, {}, ['response body']] } }
   let(:stack) { described_class.new app, options }
   let(:request) { Rack::MockRequest.new(stack) }
@@ -18,6 +19,7 @@ describe GrapeLogging::Middleware::RequestLogger do
       expect(arguments[:method]).to eq 'GET'
       expect(arguments[:params]).to be_empty
       expect(arguments[:host]).to eq 'example.org'
+      expect(arguments[:request_id]).to eq 'request-abc123'
       expect(arguments).to have_key :time
       expect(arguments[:time]).to have_key :total
       expect(arguments[:time]).to have_key :db

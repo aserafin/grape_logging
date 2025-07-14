@@ -15,7 +15,7 @@ Check that the last build succeeded in [GitHub Actions](https://github.com/asera
 
 ### Update Changelog
 
-Change "Next Release" in [CHANGELOG.md](https://github.com/aserafin/grape_logging/blob/master/CHANGELOG.md) to the new version and date:
+Change "Unreleased" in [CHANGELOG.md](https://github.com/aserafin/grape_logging/blob/master/CHANGELOG.md) to the new version and date:
 
 ```
 ## [1.8.5] - 2024-06-28
@@ -96,10 +96,12 @@ end
 Add the next release to [CHANGELOG.md](https://github.com/aserafin/grape_logging/blob/master/CHANGELOG.md).
 
 ```
-## [Next Release]
+## [1.8.6] - Unreleased
 
 ### Changed or Fixed or Added
-* Your contribution here.
+- Your contribution here.
+
+[1.8.6]: https://github.com/aserafin/grape_logging/compare/v1.8.5...master
 ```
 
 Commit your changes.

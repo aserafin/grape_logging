@@ -77,4 +77,14 @@ describe GrapeLogging::Loggers::FilterParameters do
     let(:replacement) { 'CUSTOM_REPLACEMENT' }
     it_behaves_like 'filtering'
   end
+
+  context 'with symbol keys, which occur during automated testing' do
+    let(:mock_request) { OpenStruct.new(params: { sneaky_symbol: 'hey!' }) }
+
+    it 'converts keys to strings' do
+      expect(subject.parameters(mock_request, nil)).to eq(params: {
+                                                            'sneaky_symbol' => 'hey!'
+                                                          })
+    end
+  end
 end

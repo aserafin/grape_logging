@@ -2,3 +2,13 @@ inherit_from: .rubocop_todo.yml
 
 AllCops:
   NewCops: enable
+
+Metrics/BlockLength:
+  CountAsOne: [array, hash, heredoc, method_call]
+
+Metrics/ClassLength:
+  CountAsOne: [array, hash, heredoc, method_call]
+
+Metrics/MethodLength:
+  CountAsOne: [array, hash, heredoc, method_call]
+  Max: 20
