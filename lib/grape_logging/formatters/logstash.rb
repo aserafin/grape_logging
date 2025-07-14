@@ -3,9 +3,9 @@ module GrapeLogging
     class Logstash
       def call(severity, datetime, _, data)
         {
-          :'@timestamp' => datetime.iso8601,
-          :'@version' => '1',
-          :severity => severity
+          '@timestamp': datetime.iso8601,
+          '@version': '1',
+          severity: severity
         }.merge!(format(data)).to_json + "\n"
       end
 

@@ -1,4 +1,4 @@
-lib = File.expand_path('../lib', __FILE__)
+lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'grape_logging/version'
 
@@ -8,13 +8,13 @@ Gem::Specification.new do |spec|
   spec.authors       = ['aserafin']
   spec.email         = ['adrian@softmad.pl']
 
-  spec.summary       = %q{Out of the box request logging for Grape!}
-  spec.description   = %q{This gem provides simple request logging for Grape with just few lines of code you have to put in your project! In return you will get response codes, paths, parameters and more!}
+  spec.summary       = 'Out of the box request logging for Grape!'
+  spec.description   = 'This gem provides simple request logging for Grape with just few lines of code you have to put in your project! In return you will get response codes, paths, parameters and more!'
   spec.homepage      = 'http://github.com/aserafin/grape_logging'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
-  spec.bindir        = "exe"
+  spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 

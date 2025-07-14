@@ -1,7 +1,7 @@
 module GrapeLogging
   module Loggers
     class Base
-      def parameters(request, response)
+      def parameters(_request, _response)
         {}
       end
     end
