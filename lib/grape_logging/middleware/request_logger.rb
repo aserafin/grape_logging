@@ -14,8 +14,8 @@ module GrapeLogging
       # to use int in parameters
       attr_accessor :response_status, :response_body
 
-      def initialize(app, options = {})
-        super(app, **options)
+      def initialize(app, **options)
+        super
 
         @included_loggers = @options[:include] || []
         @reporter =

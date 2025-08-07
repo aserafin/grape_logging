@@ -5,7 +5,7 @@ describe GrapeLogging::Middleware::RequestLogger do
   let(:env) { { 'action_dispatch.request_id' => 'request-abc123' } }
   let(:subject) { request.send(request_method, path, env) }
   let(:app) { proc { [status, {}, ['response body']] } }
-  let(:stack) { described_class.new app, options }
+  let(:stack) { described_class.new app, **options }
   let(:request) { Rack::MockRequest.new(stack) }
   let(:options) { { include: [], logger: logger } }
   let(:logger) { double('logger') }
