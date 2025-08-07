@@ -2,8 +2,8 @@
 
 ## [2.1.2] - Unreleased
 
-### Changed or Fixed or Added
-- Your contribution here.
+### Changed
+- [#93](https://github.com/aserafin/grape_logging/pull/93) RequestLogger middleware to handle Grape 2.4 breaking change - [@devsigner](https://github.com/devsigner) and [@samsonjs](https://github.com/samsonjs).
 
 [2.1.2]: https://github.com/aserafin/grape_logging/compare/v2.1.1...master
 
