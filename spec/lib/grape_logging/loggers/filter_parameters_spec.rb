@@ -1,29 +1,27 @@
 require 'spec_helper'
-require 'ostruct'
 
 describe GrapeLogging::Loggers::FilterParameters do
   let(:filtered_parameters) { %w[one four] }
 
   let(:mock_request) do
-    OpenStruct.new(params: {
-                     'this_one' => 'this one',
-                     'that_one' => 'one',
-                     'two' => 'two',
-                     'three' => 'three',
-                     'four' => 'four',
-                     "\xff" => 'invalid utf8'
-                   })
+    instance_double(Rack::Request, params: {
+                      'this_one' => 'this one',
+                      'that_one' => 'one',
+                      'two' => 'two',
+                      'three' => 'three',
+                      'four' => 'four',
+                      "\xff" => 'invalid utf8'
+                    })
   end
 
   let(:mock_request_with_deep_nesting) do
     deep_clone = -> { Marshal.load Marshal.dump mock_request.params }
-    OpenStruct.new(
-      params: deep_clone.call.merge(
-        'five' => deep_clone.call.merge(
-          deep_clone.call.merge({ 'six' => { 'seven' => 'seven', 'eight' => 'eight', 'one' => 'another one' } })
-        )
-      )
-    )
+    instance_double(Rack::Request,
+                    params: deep_clone.call.merge(
+                      'five' => deep_clone.call.merge(
+                        deep_clone.call.merge({ 'six' => { 'seven' => 'seven', 'eight' => 'eight', 'one' => 'another one' } })
+                      )
+                    ))
   end
 
   let(:subject) do
@@ -79,7 +77,7 @@ describe GrapeLogging::Loggers::FilterParameters do
   end
 
   context 'with symbol keys, which occur during automated testing' do
-    let(:mock_request) { OpenStruct.new(params: { sneaky_symbol: 'hey!' }) }
+    let(:mock_request) { instance_double(Rack::Request, params: { sneaky_symbol: 'hey!' }) }
 
     it 'converts keys to strings' do
       expect(subject.parameters(mock_request, nil)).to eq(params: {
