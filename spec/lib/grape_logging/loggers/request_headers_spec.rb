@@ -1,23 +1,22 @@
 require 'spec_helper'
-require 'ostruct'
 
 describe GrapeLogging::Loggers::RequestHeaders do
   let(:mock_request) do
-    OpenStruct.new(env: { HTTP_REFERER: 'http://example.com', HTTP_ACCEPT: 'text/plain' })
+    instance_double(Rack::Request, env: { HTTP_REFERER: 'http://example.com', HTTP_ACCEPT: 'text/plain' })
   end
 
   let(:mock_request_with_unhandled_headers) do
-    OpenStruct.new(env: {
-                     HTTP_REFERER: 'http://example.com',
-                     'PATH_INFO' => '/api/v1/users'
-                   })
+    instance_double(Rack::Request, env: {
+                      HTTP_REFERER: 'http://example.com',
+                      'PATH_INFO' => '/api/v1/users'
+                    })
   end
 
   let(:mock_request_with_long_headers) do
-    OpenStruct.new(env: {
-                     HTTP_REFERER: 'http://example.com',
-                     HTTP_USER_AGENT: 'Mozilla/5.0'
-                   })
+    instance_double(Rack::Request, env: {
+                      HTTP_REFERER: 'http://example.com',
+                      HTTP_USER_AGENT: 'Mozilla/5.0'
+                    })
   end
 
   it 'strips HTTP_ from the parameter' do
