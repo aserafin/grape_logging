@@ -1,5 +1,3 @@
-require 'grape'
-
 module GrapeLogging
   module Middleware
     class RequestLogger < Grape::Middleware::Base
