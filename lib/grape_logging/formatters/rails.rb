@@ -1,5 +1,3 @@
-require 'rack/utils'
-
 module GrapeLogging
   module Formatters
     class Rails

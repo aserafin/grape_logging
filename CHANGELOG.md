@@ -3,7 +3,10 @@
 ## [3.0.1] - Unreleased
 
 ### Changed or Fixed or Added
-- Your contribution here.
+
+### Changed
+- Move dev dependencies to Gemfile
+- Use zeitwerk to load gem
 
 [3.0.1]: https://github.com/aserafin/grape_logging/compare/v3.0.0...master
 

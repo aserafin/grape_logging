@@ -16,7 +16,7 @@ module GrapeLogging
       private
 
       def parameter_filter
-        @parameter_filter ||= ParameterFilter.new(@replacement, @filter_parameters)
+        @parameter_filter ||= GrapeLogging::Util::ParameterFilter.new(@replacement, @filter_parameters)
       end
 
       def safe_parameters(request)
