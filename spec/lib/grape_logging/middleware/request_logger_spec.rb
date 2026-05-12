@@ -99,4 +99,20 @@ describe GrapeLogging::Middleware::RequestLogger do
       request.post path, params: parameters
     end
   end
+
+  context 'when the wall clock moves backwards during the request' do
+    # `ActiveSupport::Notifications::Event#duration` is measured with
+    # `Process.clock_gettime(Process::CLOCK_MONOTONIC)`; mixing that with
+    # `Time.now` (wall clock) lets NTP corrections produce negative timings.
+    before { allow(Time).to receive(:now).and_return(Time.utc(2024, 1, 1, 12, 0, 1), Time.utc(2024, 1, 1, 12, 0, 0)) }
+
+    it 'records non-negative total and view runtimes' do
+      allow(GrapeLogging::Timings).to receive(:db_runtime).and_return(0.0)
+      expect(logger).to receive('info') do |arguments|
+        expect(arguments[:time][:total]).to be >= 0
+        expect(arguments[:time][:view]).to be >= 0
+      end
+      subject
+    end
+  end
 end

@@ -125,12 +125,16 @@ module GrapeLogging
         GrapeLogging::Timings.reset_db_runtime
       end
 
+      # Use a monotonic clock so the total runtime stays consistent with
+      # `ActiveSupport::Notifications::Event#duration` (also monotonic) and is
+      # immune to wall-clock jumps from NTP, which can otherwise make
+      # `total_runtime - db_runtime` negative.
       def start_time
-        @start_time ||= Time.now
+        @start_time ||= Process.clock_gettime(Process::CLOCK_MONOTONIC)
       end
 
       def stop_time
-        @stop_time ||= Time.now
+        @stop_time ||= Process.clock_gettime(Process::CLOCK_MONOTONIC)
       end
 
       def collect_parameters

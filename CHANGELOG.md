@@ -4,6 +4,9 @@
 
 ### Changed or Fixed or Added
 
+### Fixed
+- Use a monotonic clock for `total_runtime` so wall-clock skew (e.g. NTP corrections) can no longer produce a negative `view_runtime`.
+
 ### Changed
 - Move dev dependencies to Gemfile
 - Use zeitwerk to load gem
