@@ -104,13 +104,32 @@ describe GrapeLogging::Middleware::RequestLogger do
     # `ActiveSupport::Notifications::Event#duration` is measured with
     # `Process.clock_gettime(Process::CLOCK_MONOTONIC)`; mixing that with
     # `Time.now` (wall clock) lets NTP corrections produce negative timings.
-    before { allow(Time).to receive(:now).and_return(Time.utc(2024, 1, 1, 12, 0, 1), Time.utc(2024, 1, 1, 12, 0, 0)) }
+    before do
+      allow(Time).to receive(:now).and_return(
+        Time.utc(2024, 1, 1, 12, 0, 1),
+        Time.utc(2024, 1, 1, 12, 0, 0)
+      )
+    end
 
-    it 'records non-negative total and view runtimes' do
-      allow(GrapeLogging::Timings).to receive(:db_runtime).and_return(0.0)
+    it 'records a non-negative total_runtime' do
       expect(logger).to receive('info') do |arguments|
         expect(arguments[:time][:total]).to be >= 0
-        expect(arguments[:time][:view]).to be >= 0
+      end
+      subject
+    end
+  end
+
+  context 'with a controlled monotonic clock' do
+    before do
+      allow(Process).to receive(:clock_gettime).with(Process::CLOCK_MONOTONIC).and_return(100.0, 100.1)
+      allow(GrapeLogging::Timings).to receive(:db_runtime).and_return(40.0)
+    end
+
+    it 'computes view_runtime as total_runtime minus db_runtime' do
+      expect(logger).to receive('info') do |arguments|
+        expect(arguments[:time][:total]).to be_within(0.01).of(100.0)
+        expect(arguments[:time][:db]).to eq(40.0)
+        expect(arguments[:time][:view]).to be_within(0.01).of(60.0)
       end
       subject
     end
