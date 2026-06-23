@@ -99,4 +99,28 @@ describe GrapeLogging::Middleware::RequestLogger do
       request.post path, params: parameters
     end
   end
+
+  context "when using grape's error! helper inside a route" do
+    let(:app) do
+      Class.new(Grape::API) do
+        use GrapeLogging::Middleware::RequestLogger, instrumentation_key: 'radio-silence'
+
+        format :json
+
+        get :boom do
+          error!({ error: 'Something went wrong' }, 500)
+        end
+      end
+    end
+
+    let(:path) { '/boom' }
+
+    it 'logs the correct status code' do
+      expect(logger).to receive('info') do |arguments|
+        expect(arguments[:status]).to eq 500
+      end
+
+      subject
+    end
+  end
 end

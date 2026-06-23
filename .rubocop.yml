@@ -6,6 +6,8 @@ AllCops:
 
 Metrics/BlockLength:
   CountAsOne: [array, hash, heredoc, method_call]
+  Exclude:
+    - 'spec/**/*'
 
 Metrics/ClassLength:
   CountAsOne: [array, hash, heredoc, method_call]
