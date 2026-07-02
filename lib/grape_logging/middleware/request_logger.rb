@@ -70,7 +70,9 @@ module GrapeLogging
         # when no error occurs.
         if error
           # Call with error & response
-          after(error[:status], error[:message])
+          status, message = status_and_message(error)
+
+          after(status, message)
 
           # Throw again
           throw(:error, error)
@@ -146,6 +148,17 @@ module GrapeLogging
       def invoke_included_loggers(method_name)
         @included_loggers.each do |logger|
           logger.send(method_name) if logger.respond_to?(method_name)
+        end
+      end
+
+      def status_and_message(error)
+        case Gem::Version.new(Grape::VERSION)
+        when Gem::Requirement.new('>= 3.3.0')
+          # `error` is a `Grape::Exceptions::ErrorResponse`
+          [error.status, error.message]
+        else
+          # `error` is a `Hash`
+          [error[:status], error[:message]]
         end
       end
     end
