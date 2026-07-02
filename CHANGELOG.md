@@ -2,6 +2,9 @@
 
 ## [3.0.1] - Unreleased
 
+### Added
+- [#98](https://github.com/aserafin/grape_logging/pull/98) Adapt to new Grape::Exceptions::ErrorResponse throwable for Grape 3.3.0 support - [@leoarnold](https://github.com/leoarnold).
+
 ### Changed
 - [#96](https://github.com/aserafin/grape_logging/pull/96) Move dev dependencies to Gemfile and use zeitwerk to load files - [@n-rodriguez](https://github.com/n-rodriguez).
 
